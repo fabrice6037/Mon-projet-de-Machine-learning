@@ -1,0 +1,1 @@
+Mesure 3 = CALCULATE([Total ventes],FILTER(ALLSELECTED([Date],Ventes[Date] <= MAX(Ventes[Date])))
