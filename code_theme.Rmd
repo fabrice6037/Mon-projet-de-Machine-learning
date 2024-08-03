@@ -1,0 +1,63 @@
+---
+title: "Telecharger des données sur google scholar"
+author: "Ouedraogo G Fabrice"
+date: "12 juillet 2024"
+output: html_document
+---
+
+```{r}
+racine="https://scholar.google.com/scholar?start="
+bout="&q=Média+sociaux+et+santé+de+la+reproduction+en+Afrique&hl=fr&as_sdt=0,5"
+var=seq(0,200,10)
+liens=paste(racine,var,bout,sep="")
+
+
+library(rvest)
+link=vector()
+
+for(lien in liens){
+  link=c(link,read_html(lien) %>% html_nodes(".gs_rt a") %>% html_attr("href") %>% grep("\\.pdf$", ., value = TRUE))
+}
+```
+
+```{r}
+# Installer et charger le package nécessaire
+##install.packages("httr")
+library(httr)
+
+# Fonction pour extraire le nom de fichier à partir de l'URL
+get_filename_from_url <- function(url) {
+  basename(url)
+}
+
+# Fonction pour télécharger un fichier PDF et conserver le nom d'origine
+download_pdf_with_original_name <- function(url, destdir = ".") {
+  filename <- get_filename_from_url(url)
+  destfile <- file.path(destdir, filename)
+  
+  response <- GET(url)
+  
+  if (status_code(response) == 200) {
+    writeBin(content(response, "raw"), destfile)
+    message("Téléchargement terminé : ", destfile)
+  } else {
+    stop("Erreur lors du téléchargement : ", status_code(response))
+  }
+}
+
+```
+
+
+
+```{r}
+i=0
+for(url in link){
+  print(url)
+  i=i+1
+  
+  try({download_pdf_with_original_name(url, destdir = "C:/Fabrice_LPAS/fichier/S6/Recherches_stages_final/Rapport_de_fin d'etude") })
+  print(i)
+}
+
+
+```
