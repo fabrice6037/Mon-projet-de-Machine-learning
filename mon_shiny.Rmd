@@ -1,0 +1,218 @@
+---
+title: "Appliation"
+author: "Ouedraogo G Fabrice"
+date: "4 aoÃ»t 2024"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+library(shiny)
+library(shinydashboard)
+library(caret)
+library(e1071)
+library(randomForest)
+library(nnet)
+library(DT)
+library(readxl)
+library(haven)
+library(readr)
+
+# UI
+ui <- dashboardPage(
+  dashboardHeader(
+    title = tags$div(
+      tags$img(src = "C:/Users/ISSP/Pictures/Nouveau dossier/ISSP.jpg", height = "50px", style = "margin-right: 10px;"), # Ajout du logo
+      "Application de Prédiction"
+    ),
+    titleWidth = 300
+  ),
+  dashboardSidebar(
+    sidebarMenu(
+      menuItem("Accueil", tabName = "accueil", icon = icon("home")),
+      menuItem("Téléchargement des données", tabName = "upload", icon = icon("upload")),
+      menuItem("Sélection des modèles", tabName = "modeling", icon = icon("cogs")),
+      menuItem("Prédiction", tabName = "prediction", icon = icon("chart-line"))
+    )
+  ),
+  dashboardBody(
+    tabItems(
+      # Page d'accueil
+      tabItem(tabName = "accueil",
+        fluidRow(
+          box(title = "Description du Projet", width = 12,
+            p("Ce projet a pour but de prédire la désactivation des entreprises du fichier de l’identifiant financier unique (IFU). Les variables explicatives incluent :"),
+            tags$ul(
+              tags$li("Âge de l’entreprise"),
+              tags$li("Secteur d’activité"),
+              tags$li("Nombre de déclarations par an"),
+              tags$li("Nombre d’impôts assujettis"),
+              tags$li("Présence d’exonération"),
+              tags$li("Nombre d’entreprises en concurrence"),
+              tags$li("Lieu de création"),
+              tags$li("Forme juridique"),
+              tags$li("Nombre de redressements subis"),
+              tags$li("Nombre de marchés publics")
+            ),
+            p("Utilisez les boutons dans la barre de navigation pour accéder aux différentes tâches.")
+          )
+        )
+      ),
+      # Page de téléchargement des données
+      tabItem(tabName = "upload",
+        fluidRow(
+          box(title = "Téléchargement des données", width = 12,
+            fileInput("file", "Choisissez un fichier", accept = c(".csv", ".xlsx", ".dta", ".txt")),
+            uiOutput("separatorInput"),
+            actionButton("loadData", "Charger les données"),
+            actionButton("showData", "Afficher les données"),
+            DTOutput("dataPreview")
+          )
+        )
+      ),
+      # Page de sélection des modèles
+      tabItem(tabName = "modeling",
+        fluidRow(
+          box(title = "Sélection des modèles", width = 12,
+            uiOutput("targetSelect"),
+            uiOutput("featuresSelect"),
+            actionButton("trainModels", "Entraîner les modèles")
+          ),
+          box(title = "Résultats des modèles", width = 12,
+            tableOutput("modelResults")
+          )
+        )
+      ),
+      # Page de prédiction
+      tabItem(tabName = "prediction",
+        fluidRow(
+          box(title = "Prédiction", width = 12,
+            uiOutput("inputFeatures"),
+            actionButton("predict", "Prédire"),
+            verbatimTextOutput("predictionResult")
+          )
+        )
+      )
+    )
+  )
+)
+
+# Serveur
+server <- function(input, output, session) {
+  # Fonction pour lire différents types de fichiers
+  read_file <- function(file, sep = NULL) {
+    ext <- tools::file_ext(file$datapath)
+    switch(ext,
+           csv = read_csv(file$datapath, col_types = cols(), delim = sep),
+           xlsx = read_excel(file$datapath),
+           dta = read_dta(file$datapath),
+           txt = read_delim(file$datapath, delim = sep),
+           stop("Format de fichier non supporté")
+    )
+  }
+  
+  # Données téléchargées
+  data <- reactiveVal(NULL)
+  
+  # Lecture des données lors du clic sur le bouton "Charger les données"
+  observeEvent(input$loadData, {
+    req(input$file)
+    sep <- ifelse(is.null(input$separator) || input$separator == "", ",", input$separator)
+    data(read_file(input$file, sep))
+    shinyjs::disable("loadData")  # Désactiver le bouton après le chargement
+  })
+  
+  # Affichage des données lors du clic sur le bouton "Afficher les données"
+  observeEvent(input$showData, {
+    output$dataPreview <- renderDT({
+      req(data())
+      datatable(data())
+    })
+  })
+
+  # UI pour le séparateur
+  output$separatorInput <- renderUI({
+    req(input$file)
+    ext <- tools::file_ext(input$file$name)
+    if (ext %in% c("csv", "txt")) {
+      textInput("separator", "Séparateur (par défaut: ,)", value = ",")
+    } else {
+      NULL
+    }
+  })
+
+  # Sélection des variables
+  output$targetSelect <- renderUI({
+    req(data())
+    selectInput("target", "Sélectionnez la variable à prédire", choices = names(data()))
+  })
+  
+  output$featuresSelect <- renderUI({
+    req(data())
+    checkboxGroupInput("features", "Sélectionnez les variables explicatives", choices = setdiff(names(data()), input$target))
+  })
+
+  # Entraînement des modèles
+  observeEvent(input$trainModels, {
+    req(input$target, input$features)
+    df <- data()
+    target <- input$target
+    features <- input$features
+    trainIndex <- createDataPartition(df[[target]], p = 0.8, list = FALSE)
+    trainData <- df[trainIndex, ]
+    testData <- df[-trainIndex, ]
+    
+    models <- list(
+      LogisticRegression = train(as.formula(paste(target, "~", paste(features, collapse = "+"))), data = trainData, method = "glm", family = "binomial"),
+      RandomForest = train(as.formula(paste(target, "~", paste(features, collapse = "+"))), data = trainData, method = "rf"),
+      SVM = train(as.formula(paste(target, "~", paste(features, collapse = "+"))), data = trainData, method = "svmRadial")
+    )
+    
+    results <- lapply(models, function(model) {
+      predictions <- predict(model, newdata = testData)
+      cm <- confusionMatrix(predictions, testData[[target]])
+      data.frame(
+        Model = model$method,
+        Accuracy = cm$overall["Accuracy"],
+        Precision = posPredValue(predictions, testData[[target]]),
+        Recall = sensitivity(predictions, testData[[target]])
+      )
+    })
+    
+    output$modelResults <- renderTable({
+      do.call(rbind, results)
+    })
+    
+    # Enregistrer le meilleur modèle
+    bestModelIndex <- which.max(sapply(results, function(res) res$Accuracy))
+    session$userData$bestModel <- models[[bestModelIndex]]
+  })
+
+  # Interface pour les prédictions
+  output$inputFeatures <- renderUI({
+    req(session$userData$bestModel)
+    features <- all.vars(session$userData$bestModel$finalModel$terms)[-1]
+    lapply(features, function(feature) {
+      numericInput(feature, paste("Valeur de", feature), value = 0)
+    })
+  })
+
+  # Prédictions
+  observeEvent(input$predict, {
+    req(session$userData$bestModel)
+    features <- all.vars(session$userData$bestModel$finalModel$terms)[-1]
+    newdata <- as.data.frame(lapply(features, function(feature) input[[feature]]))
+    names(newdata) <- features
+    prediction <- predict(session$userData$bestModel, newdata)
+    output$predictionResult <- renderPrint({
+      paste("Prédiction:", prediction)
+    })
+  })
+}
+
+shinyApp(ui, server)
+
+
+```
+
