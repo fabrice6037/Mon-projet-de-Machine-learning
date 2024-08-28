@@ -1,0 +1,211 @@
+\documentclass[a4paper,12pt]{report}
+\renewcommand\thesection{\Roman{section}}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel} 
+\usepackage{xcolor,graphicx}
+\usepackage[top=0.6in,bottom=0.6in,right=1in,left=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{caption}   % Pour gérer les légendes
+\usepackage{float}     % Pour contrôler l'emplacement des figures
+\usepackage{booktabs}  % Pour des tableaux de meilleure qualité
+\usepackage{longtable} % Pour les tableaux qui s'étendent sur plusieurs pages
+%\usepackage{setspace}
+\usepackage{fontspec}
+
+% Configuration de la police
+\setmainfont{Times New Roman}
+
+% Configuration de l'interligne
+%\onehalfspacing
+%UNIVERSITE HASSAN 1$^{er}$
+\begin{document}
+
+\begin{titlepage}
+% \pagecolor{blue!10}
+\begin{center}
+	\begin{minipage}{2.5cm}
+	\begin{center}
+		\includegraphics[width=2.5cm,height=1.7cm]{C:/Users/ISSP/Pictures/Nouveau dossier/download (1).jpeg}
+		
+	\end{center}
+\end{minipage}\hfill
+\begin{minipage}{10cm}
+	\begin{center}
+	\textbf{ Université Joseph-Ki Zerbo}\\[0.1cm]
+    \textbf{\uppercase{I}nstitut Superieur des sciences de la population}\\[0.1cm]
+
+	\end{center}
+\end{minipage}\hfill
+\begin{minipage}{2.5cm}
+	\begin{center}
+		\includegraphics[width=2.3cm,height=2.5cm]{C:/Users/ISSP/Pictures/Nouveau dossier/ISSP.jpg}
+	\end{center}
+
+\end{minipage}
+
+%\includegraphics[width=0.6\textwidth]{logo-isae-supaero}\\[1cm]
+\textsc{\Large }\\[1.5cm]
+{\large \bfseries  Projet de  d'\uppercase{é}tudes}\\[0.5cm]
+% Title
+\rule{\linewidth}{0.3mm} \\[0.4cm]
+{ \huge \bfseries\color{blue!70!black} Analyse de l'évolution du taux de scolarisation primaire et secondaire au Burkina Faso : Disparités de genre et tendances sur la période de 2000 à 2010 \\[0.4cm] }
+\rule{\linewidth}{0.3mm} \\[1cm]
+{\large \bfseries Ministere de l'education:Direction Générale des statistiques sectorielles }\\[1cm]
+
+
+% \includegraphics[width=0.3\textwidth]{logo-isae-supaero}\\[1cm]
+% Author and supervisor
+\noindent
+\begin{minipage}{0.4\textwidth}
+  \begin{flushleft} \large
+    \emph{\color{orange!80!black}Réalisé par :}\\
+    M.~Ouedraogo \textsc{G Fabrice}\\
+  \end{flushleft}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+  \begin{flushright} \large
+    \emph{\color{orange!80!black}Sous la direction de :} \\
+    Dr.~K \textsc{Yacouba}
+  \end{flushright}
+\end{minipage}\\[1cm]
+
+\color{black}
+\centering
+\begin{tabular}{lll}
+
+\end{tabular}
+
+\vfill
+
+% Bottom of the page
+{\large \color{orange!80!black}{Année universitaire}\\ \color{blue!80!black}2023/2024}
+\end{center}
+\end{titlepage}
+\newpage
+% Table des matières
+\tableofcontents
+\newpage
+
+
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+L’éducation constitue un pilier fondamental du développement humain et économique, particulièrement dans les pays en développement comme le Burkina Faso. Depuis les années 2000, le Burkina Faso s’est engagé dans une série de réformes éducatives ambitieuses, dans le cadre des Objectifs du Millénaire pour le Développement (OMD) et des Objectifs de Développement Durable (ODD). Ces efforts ont permis d’améliorer l’accès à l’éducation, mais des défis majeurs subsistent, notamment en ce qui concerne les disparités de genre.
+
+Selon les données de la Banque mondiale, le taux de scolarisation brute au primaire est passé de 44 \% en 2000 à 78 \% en 2010, témoignant d’une augmentation significative de l’accès à l’éducation primaire. Cependant, malgré cette progression, le taux de scolarisation nette au secondaire reste faible, avec seulement 28 \% des enfants en âge d’être scolarisés inscrits dans le secondaire en 2010. Les disparités de genre sont particulièrement marquées : en 2010, l’indice de parité de genre (IPG) au niveau du secondaire était de 0,84, indiquant que pour chaque 100 garçons inscrits, il n'y avait que 84 filles. Ces écarts sont exacerbés par des facteurs socio-économiques et culturels, tels que les mariages précoces, les tâches domestiques assignées aux filles, et les perceptions traditionnelles du rôle des femmes dans la société.
+
+En dépit de l’augmentation des dépenses publiques dans l’éducation, qui représentaient 4,1 \% du PIB en 2010, contre 3 \% en 2000, ces investissements n’ont pas toujours permis de réduire efficacement les inégalités de genre. Cette situation souligne la nécessité d’évaluer l'impact des politiques publiques mises en œuvre et d'identifier les leviers d'action pour améliorer l'équité dans l'accès à l'éducation.
+
+Ce rapport se propose d'analyser l'évolution des taux de scolarisation primaire et secondaire au Burkina Faso entre 2000 et 2010, avec un focus particulier sur les disparités de genre. L’objectif est d’évaluer l’impact des réformes éducatives et de proposer des recommandations pour orienter les politiques futures vers une éducation plus inclusive. Cette étude s’appuie sur des données quantitatives issues de sources fiables, telles que la Banque mondiale et l’UNESCO, et vise à fournir une analyse rigoureuse pour éclairer les décisions des acteurs éducatifs et des décideurs politiques.
+% Résumé
+\chapter*{Méthodologie}
+\addcontentsline{toc}{chapter}{Méthodologie}
+\section{Données Utilisées}
+Pour cette étude, nous avons utilisé des données secondaires provenant de sources fiables, en particulier la Banque mondiale et l’UNESCO, qui fournissent des indicateurs éducatifs complets et standardisés pour le Burkina Faso. Les données couvrent la période de 2000 à 2010 et incluent les indicateurs suivants :\\
+•	Taux de scolarisation brut et net : Mesurant le pourcentage d’enfants inscrits dans le système éducatif par rapport à la population en âge d’être scolarisée, au niveau primaire et secondaire.\\
+•	Indice de parité de genre (IPG) : Rapport du taux de scolarisation des filles à celui des garçons, utilisé pour évaluer les disparités de genre dans l’accès à l’éducation.\\
+•	Dépenses publiques en éducation : Exprimées en pourcentage du PIB et en part des dépenses publiques totales, ces données permettent d’analyser l’investissement de l’État dans l’éducation.\\
+•	Données démographiques et socio-économiques : Telles que le PIB par habitant, le taux d’alphabétisation des adultes, et la répartition géographique de la population, pour contextualiser les résultats éducatifs.\\
+\section{Méthodes d’Analyse}
+\subsection{Analyse descriptive}
+L'analyse descriptive est essentielle pour identifier les tendances de base et les écarts dans les données. Elle permet de mettre en lumière les progrès réalisés et les défis persistants, notamment en termes de disparités de genre.Ainsi nous avons commencé par une analyse descriptive pour dresser  un tableau général de l’évolution des taux de scolarisation au Burkina Faso entre 2000 et 2010. Cette étape inclut :
+\begin{itemize}
+\item Création de graphiques de tendance pour visualiser l’évolution des taux de scolarisation et de l’IPG au fil du temps
+\item 	Tableaux de synthèse pour présenter la répartition des dépenses publiques en éducation par niveau et par sexe.
+\end{itemize}
+\chapter*{Résultats }
+\addcontentsline{toc}{chapter}{Résultats }
+\section{Statistiques Descriptives}
+\subsection{Taux de Scolarisation}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{evolution_taux_de_scolarisation_primaire.pdf}
+    \caption{Taux de scolarisation net au primaire}
+    \label{fig:TNSP}
+\end{figure}
+\noindent
+\textbf{Interprétation :}
+Le graphique montre une tendance générale à la hausse des taux de scolarisation primaire et secondaire
+au Burkina Faso entre 2000 et 2010. On observe une augmentation significative après l'année 2005,
+ce qui pourrait être attribué aux réformes éducatives mises en place par le gouvernement. 
+ L'évolution des taux secondaires est légèrement plus lente, suggérant que l'accès à l'éducation 
+au niveau secondaire reste un défi comparé au primaire.
+%insertion de la presentant le taux scolarisation net et brute entre 2000 et 2011
+\input{table_scolar.tex}
+
+\subsection{Disparités de Genre}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{evolution_ratio.pdf}
+    \caption{Indice de parité du genre}
+    \label{fig:IPG}
+\end{figure}
+\noindent
+\subsection{Répartition des Dépenses Éducatives}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{evolution_depense_edu.pdf}
+    \caption{Depense allouée a l'education}
+    \label{fig:depenses_education}
+\end{figure}
+\noindent
+\section{Analyses d'Évolution}
+\subsection{Évolution des Taux de Scolarisation}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{comparaison_TNSP_TNSS.pdf}
+    \caption{Comparaison TNSP ,TNSS}
+    \label{fig:TSS_TNSP}
+\end{figure}
+\noindent
+\textbf{commentaire}:Le taux net de scolarisation au primaire et au secondaire ont connu une evolution entre 2000 et 2010.Par ailleurs ,l'analyse comparative du graphique  laisse percevoir un taux net de scolarisation au primaire qui est largement superieur a celui du secondaire.Absente aux alentours de 2002,le TNSP a connu une connu une evolution mais reste tres faible et n'atteint 17 \% en 2011.Quant au TNSP ,autour de 34\% en 2000 il evolue progressivement et connu un pic en 2009 ou il depasse legrement 60\%.Il connu une baisse en 2010 et redescent a moins de 60\%(59\%).Apres cette annee ,ce taux a connu une evolution en 2011 ou il atteint 63\% soit une augmantation de 29\%.Cela est du aux politiques educatives mise en place tel que la gratuité des ecoles,l’amélioration de l’offre scolaire..A 37\% pres on atteindra l’un des Objectifs (objectif 2) du Millénaire pour le développement (OMD) visait l’enseignement primaire universel.
+\subsection{Évolution des Disparités de Genre}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{ecart_IPG_Fille_Garcon.pdf}
+    \caption{ecart IPG Fille Garcon}
+    \label{fig:ecart_IPG_Fille_Garcon}
+\end{figure}
+
+\chapter*{Discussion}
+
+\addcontentsline{toc}{chapter}{Discussion}
+
+% Remerciements
+\chapter*{Conclusion et Recommandations}
+\addcontentsline{toc}{chapter}{Conclusion et Recommandations}
+\begin{itemize}{}
+
+\item Renforcement des Politiques de Sensibilisation
+Campagnes de Sensibilisation : Lancer des campagnes nationales pour promouvoir l'importance de l'éducation pour les filles et encourager les parents à inscrire leurs filles à l'école.
+Programmes de Sensibilisation Communautaire : Travailler avec les leaders communautaires et religieux pour changer les perceptions culturelles et encourager la scolarisation des filles.\\
+\item Amélioration des Infrastructures Éducatives
+Construction d'écoles : Construire des écoles dans les zones rurales et isolées pour réduire les distances que les élèves doivent parcourir.
+Installations Séparées pour Filles : Créer des installations séparées pour les filles dans les écoles, telles que des toilettes et des espaces d'apprentissage, pour améliorer l'accessibilité et la sécurité.\\
+\item Soutien Financier et Matériel
+Programmes de Bourses : Mettre en place des programmes de bourses pour les filles et les familles à faible revenu pour alléger les frais scolaires.
+Distribution de Matériel Scolaire : Fournir des fournitures scolaires gratuites ou subventionnées pour les élèves des zones défavorisées.\\
+\item Amélioration des Conditions d'enseignement
+Formation des Enseignants : Offrir des formations continues aux enseignants sur l'importance de l'égalité des genres et les méthodes pédagogiques inclusives.
+Encouragement des Enseignantes : Recruter et former davantage de femmes enseignantes pour servir de modèles et offrir un environnement d'apprentissage plus équilibré.\\
+\item Surveillance et Évaluation
+Collecte de Données : Mettre en place des systèmes de suivi et d'évaluation pour recueillir des données sur les taux de scolarisation, les absences, et les performances scolaires en fonction du genre.
+Analyse Régulière : Réaliser des études régulières pour évaluer l'impact des politiques éducatives et ajuster les interventions en fonction des résultats.\\
+\item Encouragement à l'éducation Secondaire
+Programmes de Transition : Développer des programmes de transition pour les élèves du primaire vers le secondaire, en mettant l'accent sur la continuation de l'éducation pour les filles.
+Soutien à la Réussite Scolaire : Mettre en place des programmes de tutorat et de soutien scolaire pour aider les élèves à réussir dans l'enseignement secondaire.\\
+\item Politiques Inclusives et Égalitaires
+Revue des Politiques Éducatives : Réviser les politiques éducatives pour garantir qu'elles abordent les disparités de genre et offrent des opportunités égales à tous les élèves.
+Engagement des Parties Prenantes : Impliquer les parties prenantes, y compris les parents, les enseignants, et les organisations non gouvernementales, dans le développement et la mise en œuvre des politiques éducatives.
+\end{itemize}
+% Bibliographie
+\begin{thebibliography}{99}
+\addcontentsline{toc}{chapter}{Bibliographie}
+\bibitem{ref1} Référence 1
+\bibitem{ref2} Référence 2
+\end{thebibliography}
+
+% Annexes
+\appendix
+\chapter*{Annexe A}
+\end{document}
