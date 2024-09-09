@@ -1,0 +1,254 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{engrec}
+\renewcommand{\thechapter}{\Roman{chapter}.}
+\renewcommand{\thesection}{\Roman{section}.}
+\renewcommand{\thesubsection}{\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\alph{subsubsection}.}
+\renewcommand{\theparagraph}{\engrec{paragraph}.}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel} 
+\usepackage{xcolor,graphicx}
+\usepackage[top=0.6in,bottom=0.6in,right=1in,left=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{caption}   % Pour gérer les légendes
+\usepackage{float}     % Pour contrôler l'emplacement des figures
+\usepackage{booktabs}  % Pour des tableaux de meilleure qualité
+\usepackage{longtable} % Pour les tableaux qui s'étendent sur plusieurs pages
+\usepackage{setspace}
+\usepackage{fontspec}
+\usepackage{graphicx}
+% Configuration de la police
+\setmainfont{Times New Roman}
+
+% Configuration de l'interligne
+\onehalfspacing
+%UNIVERSITE HASSAN 1$^{er}$
+\begin{document}
+\begin{titlepage}
+% \pagecolor{blue!10}
+\begin{center}
+	\begin{minipage}{2.5cm}
+	\begin{center}
+		\includegraphics[width=2.5cm,height=1.7cm]{C:/Users/ISSP/Pictures/Nouveau dossier/download (1).jpeg}
+		
+	\end{center}
+\end{minipage}\hfill
+\begin{minipage}{10cm}
+	\begin{center}
+	\textbf{ Université Joseph-Ki Zerbo}\\[0.1cm]
+    \textbf{\uppercase{I}nstitut Superieur des sciences de la population}\\[0.1cm]
+
+	\end{center}
+\end{minipage}\hfill
+\begin{minipage}{2.5cm}
+	\begin{center}
+		\includegraphics[width=2.3cm,height=2.5cm]{C:/Users/ISSP/Pictures/Nouveau dossier/ISSP.jpg}
+	\end{center}
+
+\end{minipage}
+
+%\includegraphics[width=0.6\textwidth]{logo-isae-supaero}\\[1cm]
+\textsc{\Large }\\[1.5cm]
+{\large \bfseries Mémoire du Projet de Fin d'\uppercase{é}tudes}\\[0.5cm]
+{\large En vue de l'obtention du diplôme}\\[1cm]
+
+{\huge \bfseries \uppercase{Licence professionnelle en analyse statistique} \\[0.5cm] }
+{\large \bfseries Filière :Analyse statistique}
+\textsc{\Large }\\[1cm]
+
+% Title
+\rule{\linewidth}{0.3mm} \\[0.4cm]
+{ \huge \bfseries\color{blue!70!black} Mise en place d'un modele de prevision de la desactivation des entreprises du fichier de l'identifiant financier unique (IFU)\\[0.4cm] }
+\rule{\linewidth}{0.3mm} \\[1cm]
+{\large \bfseries Direction Générale des Impots:Direction des enquetes et de la Recherche Fiscales }\\[1cm]
+
+\begin{minipage}{2.5cm}
+	\begin{center}
+		\includegraphics[width=2.3cm,height=2.5cm]{C:/Users/ISSP/Pictures/Nouveau dossier/dgi.jpg}
+	\end{center}
+
+\end{minipage}
+
+% \includegraphics[width=0.3\textwidth]{logo-isae-supaero}\\[1cm]
+% Author and supervisor
+\noindent
+\begin{minipage}{0.4\textwidth}
+  \begin{flushleft} \large
+    \emph{\color{orange!80!black}Réalisé par :}\\
+    M.~Ouedraogo \textsc{G Fabrice}\\
+  \end{flushleft}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+  \begin{flushright} \large
+    \emph{\color{orange!80!black}Sous la direction de :} \\
+    Mr.~Kabore \textsc{Toussaint} (DGI)
+  \end{flushright}
+\end{minipage}\\[1cm]
+
+\color{blue!80!black}{\large \textit{Soutenu le 01 Novembre 2024, Devant le jury : }}\\[0.5cm]
+
+\color{black}
+\centering
+\begin{tabular}{lll}
+
+\end{tabular}
+
+\vfill
+
+% Bottom of the page
+{\large \color{orange!80!black}{Année universitaire}\\ \color{blue!80!black}2023/2024}
+\end{center}
+\end{titlepage}
+\newpage
+% Table des matières
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+
+\chapter*{Dédicace}
+\addcontentsline{toc}{chapter}{Dedicace}
+
+% Résumé
+\chapter*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+
+% Abstract
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+\chapter*{Avant-propos}
+\addcontentsline{toc}{chapter}{Avant-propos}
+% Remerciements
+\chapter*{Remerciements}
+\addcontentsline{toc}{chapter}{Remerciements}
+
+% Remerciements
+\chapter*{Sigles et abréviations}
+\addcontentsline{toc}{chapter}{Sigles et abbréviation}
+
+% Remerciements
+\chapter*{Liste des figures et tableaux}
+\addcontentsline{toc}{chapter}{Liste des figures et tableaux}
+
+
+% Remerciements
+\chapter*{Chapitre 0:Présentation de la structure d'accueil}
+
+\addcontentsline{toc}{chapter}{Presentation de la structure d'acceuil}
+\setcounter{section}{0}
+\section{Historique de la DGI}
+\section{Organigramme de la DGI}
+\section{Missions de la DGI}
+\section{Direction des enquêtes et de la Recherche Fiscale(DERF)}
+% Introduction
+\chapter*{Chapitre 1:Introduction et Problématique}
+\addcontentsline{toc}{chapter}{Introduction et problématique}
+\setcounter{section}{0}
+
+\section{Contexte et justification}
+
+
+\section{Problématique}
+
+
+
+% Revue de littérature
+\chapter*{Chapitre 2:Revue de littérature}
+\addcontentsline{toc}{chapter}{Revue de littérature}
+\setcounter{section}{0}
+\section{Revue Théorique}
+\subsection{Théories de la Survie des Entreprises}
+\subsubsection{Théorie des Ressources et des Capacités (RBV(Resource-Based View))}
+La Théorie des Ressources et des Capacités (RBV) stipule que les ressources et les capacités uniques d’une entreprise sont cruciales pour sa survie. Les entreprises avec des ressources précieuses, rares, inimitables et non substituables sont mieux positionnées pour survivre (Barney, 1991).
+\subsubsection{Théorie Institutionnelle}
+La Théorie Institutionnelle suggère que les entreprises doivent se conformer aux normes et attentes de l’environnement institutionnel pour survivre. Les entreprises qui s'adaptent aux pressions institutionnelles, telles que les régulations et les attentes sociales, ont de meilleures chances de survie (DiMaggio \& Powell, 1983).
+\subsubsection{Modèles de Dynamique de Population}
+Les Modèles de Dynamique de Population se concentrent sur la dynamique de la population d’entreprises dans un marché, expliquant comment les taux de naissance et de mortalité des entreprises évoluent en fonction des conditions économiques et du marché (Hannan \& Freeman, 1977).
+\subsection{Modèles de Prévision de la Désactivation}
+\subsubsection{Modèle de Cox (Proportional Hazards Model)}
+Utilisé pour analyser le temps jusqu’à la désactivation en fonction des covariables. Ce modèle est adapté pour des données censurées (Cox, 1972).
+\subsubsection{Régression Logistique}
+Modèle qui prédit la probabilité de désactivation en fonction des variables explicatives. Ce modèle est utile pour les données binaires (Hosmer \& Lemeshow, 2000).
+\subsubsection{Analyse de Survie}
+L’Analyse de Survie examine la durée de survie des entreprises et peut être utilisée pour estimer les taux de désactivation en fonction des caractéristiques des entreprises (Kalbfleisch \& Prentice, 2002).
+
+\section{Revue empirique}
+\subsection{Analyse des Données sur la Mortalité des Entreprises}
+\subsubsection{Le taux de mortalité des entreprises et ses déterminants}
+Cet article fournit les chiffres suivants : - Taux de mortalité par âge de l’entreprise : Les entreprises jeunes (moins de 5 ans) ont un taux de mortalité de 30 \%, contre 10 \% pour les entreprises plus âgées. Source - Secteur d’activité : Les entreprises dans les secteurs de la construction et des services ont des taux de mortalité plus élevés (25 \%) comparés aux secteurs de la technologie (10 \%).
+\subsubsection{Mortalités des entreprises : Étude du CRI de Casablanca}
+Cette étude révèle : - Taux de mortalité dans la région de Casablanca : Environ 18 \% des entreprises ferment dans les 3 premières années d’existence. - Facteurs déterminants : L’accès au financement et les compétences en gestion sont des facteurs critiques. Les entreprises ayant des difficultés d’accès au crédit ont un taux de mortalité 20 \% plus élevé. Source
+\subsection{Études de Cas Régionales}
+\subsubsection{Situation des entreprises : Taux de mortalité évalué à plus de 16 \%} 
+Au Burkina Faso, le rapport indique :
+\begin{itemize}[label=\textbullet]
+\item Taux de mortalité : Environ 16 \% des entreprises ferment dans les 5 premières années. 
+\item Facteurs économiques : L’instabilité économique et la régulation sont des facteurs majeurs influençant la mortalité des entreprises.
+\end{itemize}
+
+\subsubsection{Rapport sur la mortalité des entreprises au Cameroun}
+Le rapport montre : - Taux de désactivation au Cameroun : Près de 20 \% des entreprises ferment dans les 5 premières années. Source - Facteurs influents : Les défis économiques et la concurrence sont des déterminants clés. Les entreprises confrontées à une forte concurrence ont un taux de mortalité 15 \% plus élevé.
+\subsubsection{Modélisation et prévision de la mortalité des entreprises}
+Les méthodologies recommandées incluent : - Modèle de Cox : Adapté pour les données censurées, utilisé pour prédire le temps jusqu’à la désactivation en fonction des caractéristiques de l’entreprise. - Régression Logistique : Prédit les chances de désactivation en fonction de variables explicatives. Source
+\subsubsection{Taux de décès des entreprises employant des salariés}
+Ce rapport montre : - Taux de décès : Les entreprises employant des salariés ont un taux de décès de 12 \% en moyenne, comparé à 18 \% pour les entreprises sans salariés. Source
+\section{Méthodologies de Modélisation}
+
+\chapter*{Chapitre 3: Méthodologie}
+\addcontentsline{toc}{chapter}{Méthodologie}
+\setcounter{section}{0}  % Reset section counter
+\renewcommand\thesection{\Roman{section}} 
+\section{Données}
+
+\section{Sélection des variables}
+
+\section{Analyse descriptive}
+
+% Résultats
+\chapter*{Chapitre 4:Résultats}
+\addcontentsline{toc}{chapter}{Résultats}
+
+% Discussion
+\chapter*{Chapitre 5:Discussion}
+\addcontentsline{toc}{chapter}{Discussion}
+
+
+% Conclusion
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Conclusion}
+
+% Bibliographie
+\begin{thebibliography}{99}
+\addcontentsline{toc}{chapter}{Bibliographie}
+\bibitem{ref1} Référence 1
+\bibitem{ref2} Référence 2
+\end{thebibliography}
+
+% Annexes
+\appendix
+\chapter*{Annexe A}
+\begin{figure}[H]
+    \centering
+\includegraphics[width=10cm,height=10cm]{../../../Recherches_stages_final/Rapport_de_fin d'etude/Rapport-traitement-et-analyse_files/figure-docx/test_schoenfeld.png} 
+ \caption{Test de schoenfeld}
+    \label{fig:test_schoenfeld}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+\includegraphics[width=10cm,height=10cm]{../../../Recherches_stages_final/Rapport_de_fin d'etude/Rapport-traitement-et-analyse_files/figure-docx/sortie_coefficient.png} 
+ \caption{sortie coefficients du modele}
+    \label{fig:sortie_coefficient}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+\includegraphics[width=10cm,height=5cm]{../../../Recherches_stages_final/Rapport_de_fin d'etude/Rapport-traitement-et-analyse_files/figure-docx/coefficient_modele_final.png} 
+ \caption{sortie coefficients du modele final}
+    \label{fig:sortie_coefficient_modele}
+\end{figure}
+\end{document}
