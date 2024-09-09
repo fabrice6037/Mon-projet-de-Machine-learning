@@ -1,0 +1,448 @@
+---
+title: Revue de litterature , Indicateur d'analyse de survie des entreprises,exploration
+  de base
+author: "Ouedraogo G Fabrice"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  pdf_document: 
+    fig_caption: yes
+  powerpoint_presentation: default
+  word_document: default
+  html_document: 
+    toc: yes
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,message=FALSE)
+```
+## Introduction
+
+La désactivation des entreprises est un phénomène influencé par divers facteurs. Cette revue examine les théories de la survie des entreprises et fournit une analyse empirique basée sur des données spécifiques disponibles dans les articles et rapports consultés.
+
+## Revue Théorique
+
+### 1. Théories de la Survie des Entreprises
+
+**1.1. Théorie des Ressources et des Capacités (RBV(Resource-Based View))**
+
+La Théorie des Ressources et des Capacités (RBV) stipule que les ressources et les capacités uniques d'une entreprise sont cruciales pour sa survie. Les entreprises avec des ressources précieuses, rares, inimitables et non substituables sont mieux positionnées pour survivre (Barney, 1991).
+
+**1.2. Théorie Institutionnelle**
+
+La Théorie Institutionnelle suggère que les entreprises doivent se conformer aux normes et attentes de l'environnement institutionnel pour survivre. Les entreprises qui s'adaptent aux pressions institutionnelles, telles que les régulations et les attentes sociales, ont de meilleures chances de survie (DiMaggio & Powell, 1983).
+
+**1.3. Modèles de Dynamique de Population**
+
+Les Modèles de Dynamique de Population se concentrent sur la dynamique de la population d'entreprises dans un marché, expliquant comment les taux de naissance et de mortalité des entreprises évoluent en fonction des conditions économiques et du marché (Hannan & Freeman, 1977).
+
+### 2. Modèles de Prévision de la Désactivation
+
+**2.1. Modèle de Cox (Proportional Hazards Model)**
+
+Utilisé pour analyser le temps jusqu'à la désactivation en fonction des covariables. Ce modèle est adapté pour des données censurées (Cox, 1972).
+
+**2.2. Régression Logistique**
+
+Modèle qui prédit la probabilité de désactivation en fonction des variables explicatives. Ce modèle est utile pour les données binaires (Hosmer & Lemeshow, 2000).
+
+**2.3. Analyse de Survie**
+
+L'Analyse de Survie examine la durée de survie des entreprises et peut être utilisée pour estimer les taux de désactivation en fonction des caractéristiques des entreprises (Kalbfleisch & Prentice, 2002).
+
+## Revue Empirique
+
+### 1. Analyse des Données sur la Mortalité des Entreprises
+
+**1.1. Le taux de mortalité des entreprises et ses déterminants**
+
+Cet article fournit les chiffres suivants :
+- **Taux de mortalité par âge de l'entreprise** : Les entreprises jeunes (moins de 5 ans) ont un taux de mortalité de 30%, contre 10% pour les entreprises plus âgées. [Source](https://www.revuegestion.ca/vie-et-mort-de-l-entreprise)
+- **Secteur d'activité** : Les entreprises dans les secteurs de la construction et des services ont des taux de mortalité plus élevés (25%) comparés aux secteurs de la technologie (10%).
+
+**1.2. Mortalités des entreprises : Étude du CRI de Casablanca**
+
+Cette étude révèle :
+- **Taux de mortalité dans la région de Casablanca** : Environ 18% des entreprises ferment dans les 3 premières années d'existence.
+- **Facteurs déterminants** : L'accès au financement et les compétences en gestion sont des facteurs critiques. Les entreprises ayant des difficultés d'accès au crédit ont un taux de mortalité 20% plus élevé. [Source](https://fnh.ma/article/actualite-economique/mortalite-des-entreprises-l-etude-choc-du-cri-de-casablanca)
+
+### 2. Études de Cas Régionales
+
+**2.1. Situation des entreprises : Taux de mortalité évalué à plus de 16%**
+
+Au Burkina Faso, le rapport indique :
+- **Taux de mortalité** : Environ 16% des entreprises ferment dans les 5 premières années. [Source](https://www.leconomistedufaso.com/2016/09/19/situation-entreprises-taux-de-mortalite-evalue-a-plus-16/)
+- **Facteurs économiques** : L'instabilité économique et la régulation sont des facteurs majeurs influençant la mortalité des entreprises.
+
+**2.2. Rapport sur la mortalité des entreprises au Cameroun**
+
+Le rapport montre :
+- **Taux de désactivation au Cameroun** : Près de 20% des entreprises ferment dans les 5 premières années. [Source](https://ins-cameroun.cm/wp-content/uploads/2019/12/Rapport_thematique_RGE2_Mortalite_des_entreprises_final.pdf)
+- **Facteurs influents** : Les défis économiques et la concurrence sont des déterminants clés. Les entreprises confrontées à une forte concurrence ont un taux de mortalité 15% plus élevé.
+
+### 3. Méthodologies de Modélisation
+
+**3.1. Modélisation et prévision de la mortalité des entreprises**
+
+Les méthodologies recommandées incluent :
+- **Modèle de Cox** : Adapté pour les données censurées, utilisé pour prédire le temps jusqu'à la désactivation en fonction des caractéristiques de l'entreprise.
+- **Régression Logistique** : Prédit les chances de désactivation en fonction de variables explicatives. [Source](https://www.oecd-ilibrary.org/survie-des-entreprises_5jg03xv0t75f.pdf)
+
+**3.2. Taux de décès des entreprises employant des salariés**
+
+Ce rapport montre :
+- **Taux de décès** : Les entreprises employant des salariés ont un taux de décès de 12% en moyenne, comparé à 18% pour les entreprises sans salariés. [Source](https://www.oecd-ilibrary.org/taux-de-deces-des-entreprises-employant-des-salaries_5k8zlmr5ljf3.pdf?itemId=%2Fcontent%2Fcomponent%2Fentrepreneur_aag-2012-11-fr&mimeType=pdf)
+
+
+## Bilan des variables retenues apres lectures de la revue
+- L’expérience du porteur de projet dans le secteur d’activité,  
+- Les moyens financiers investis lors du lancement de l’activité,  
+- Le statut juridique choisi pour l’entreprise,  
+- La taille de la commune d’implantation,  
+- Et le secteur d’activité de l’entreprise.  
+- secteur d’activités  
+- le genre,   
+- l’âge du promoteur, sa motivation et sa personnalité,   
+- le secteur d’activités,   
+- le capital humain, le capital social,la planification et   
+- le contexte environnemental
+
+
+## quelques indicateurs
+
+
+
+## 1. Calcul du Taux de Survie (Survival Rate)
+
+La formule du taux de survie est donnée par :
+
+$$
+Taux\ de\ Survie = \frac{N_t}{N_0}
+$$
+
+où :
+
+- $N_t$ représente le nombre d'entreprises encore actives après un certain temps $t$.
+- $N_0$ est le nombre total d'entreprises au départ (à $t = 0$).
+
+## 2. Taux de Cessation d'Activité (Cessation Rate)
+
+Le taux de cessation d'activité est calculé comme suit :
+
+$$
+Taux\ de\ Cessation = 1 - Taux\ de\ Survie
+$$
+
+# 3. Moyenne de la Durée de Vie (Mean Lifetime)
+
+La moyenne de la durée de vie des entreprises est calculée avec la formule :
+
+$$
+\text{Moyenne\ de\ la\ Durée\ de\ Vie} = \frac{\sum_{i=1}^{N} D_i}{N}
+$$
+
+où :
+
+- $D_i$ est la durée de vie de chaque entreprise $i$.
+- $N$ est le nombre total d'entreprises.
+
+# 4. Indice de Concentration (Concentration Index)
+
+L'indice de concentration, aussi connu sous le nom d'indice de Herfindahl-Hirschman, est calculé par :
+
+$$
+H = \sum_{i=1}^{N} s_i^2
+$$
+
+où :
+
+- $H$ est l'indice de concentration.
+- $s_i$ est la part de marché de l'entreprise $i$.
+- $N$ est le nombre total d'entreprises dans le marché.
+
+### 4.1 Interprétation des Valeurs
+
+- **Valeurs Basses** : Un H bas (près de 0) indique une faible concentration de marché, ce qui signifie une concurrence élevée avec de nombreuses entreprises ayant des parts de marché relativement petites.
+- **Valeurs Moyennes** : Un H modéré indique une concentration intermédiaire, avec une certaine concentration mais encore une concurrence relativement forte.
+- **Valeurs Élevées** : Un H élevé (près de 10 000) indique une forte concentration de marché, ce qui signifie que quelques entreprises dominent le marché et que la concurrence est faible.
+
+## 5. Mesure de la Disparité entre Groupes Stratégiques
+
+La formule pour mesurer la disparité entre deux entreprises est :
+
+$$
+D_{ij} = \sum_{k=1}^{K} |X_{ik} - X_{jk}|
+$$
+
+où :
+
+- $D_{ij}$ est la distance entre les entreprises $i$ et $j$.
+- $X_{ik}$ et $X_{jk}$ sont les valeurs des caractéristiques stratégiques $k$ pour les entreprises $i$ et $j$.
+- $K$ est le nombre total de caractéristiques stratégiques considérées.
+
+## fixation du repertoire de travail
+```{r}
+setwd("C:/Fabrice_LPAS/fichier/S6/Recherches_stages_final/Rapport_de_fin d'etude")
+```
+
+
+## Prise de contacte avec la base de données
+
+Chargement de la base de données
+
+```{r}
+base_IFU=read.csv("BASE_IFU_1.csv",sep=";",header=T)
+
+```
+
+dimension de la base et Noms des variables
+```{r}
+dim.data.frame(base_IFU)
+colnames(base_IFU)
+
+```
+
+
+
+Resume des données
+```{r}
+summary(base_IFU)
+missing_values <- colSums(is.na(base_IFU))
+
+```
+
+Le resume de la base de données nous fournit les informations suivantes:
+
+1-variable DATE_IMMAT qui a ete considereé comme numerique
+
+
+2-START_DATE,END_DATE qui sont considerées comme characteres
+
+
+
+3-SEXE considerée comme numérique renferme des valeurs manquantes 
+
+
+
+
+# Traitement de la base de données
+
+## 1-recodage de la variable sexe
+
+
+```{r}
+library(dplyr)
+base_IFU <- base_IFU %>%
+  mutate(SEXE = case_when(
+    SEXE == 1 ~ "Homme",
+    SEXE == 2 ~ "Femme",
+    TRUE ~ "Personne moral"
+  ))
+
+```
+
+## 2-regroupement de la variable FORME_J
+```{r}
+
+base_IFU <- base_IFU %>% 
+  mutate(Forme_Juridique = case_when(
+    FORME_J_ABREGE %in% c("P.P", "INDIVISION") ~ "Structures Individuelles",
+    TRUE ~ "Personne morale"
+  ))
+```
+
+## 3.conversion les dates en format Date 
+
+```{r}
+
+# Pour convertir en format date-heure (POSIXct)
+base_IFU$DATE_IMMAT <- as.POSIXct(base_IFU$DATE_IMMAT, format="%d-%m-%Y %H:%M:%S")
+base_IFU$START_DATE <- as.POSIXct(base_IFU$START_DATE, format="%d-%m-%Y %H:%M:%S")
+base_IFU$END_DATE <- as.POSIXct(base_IFU$END_DATE, format="%d-%m-%Y %H:%M:%S")
+```
+
+##etude de la correlation entre les variables
+
+```{r}
+corr_matrix <- cor(base_IFU %>% select_if(is.numeric), use = "pairwise.complete.obs")
+
+```
+
+# la periode d'etude est de 2013 a 2024
+```{r}
+library(lubridate)
+base_IFU=base_IFU %>% filter(year(START_DATE) %in% 2013:2024 )
+```
+## determination de la date de la premiere desactivation
+```{r}
+library(dplyr)
+
+Base_IFU_1 <- base_IFU %>%
+  group_by(NIFU) %>%  # Grouper par identifiant
+  filter(ETAT_ARCHIV == "INACTIF") %>%  # Filtrer les lignes où ETAT_ARCHIV est "inactif"
+  arrange(END_DATE) %>%  # Trier par END_DATE
+  slice(1) %>%  # Sélectionner la première occurrence
+  ungroup()   # Sélectionner les colonnes NIFU et END_DATE
+```
+
+## transformation de la variable ID_ACTIVTE
+```{r}
+Base_IFU_1=Base_IFU_1 %>%  mutate(ID_AC=substr(IDACTIVITE,1,2))
+```
+##Determinons l'age de l'entreprise
+```{r}
+Base_IFU_1=Base_IFU_1 %>% mutate(age=difftime(END_DATE,DATE_IMMAT,units="weeks")/52)
+```
+
+#determination du fait que l'entreprises est nouvelle ou pas(ancien ou nouvelle creation)
+```{r}
+library(lubridate)
+Base_IFU_1=Base_IFU_1 %>% mutate(type_de_creation=case_when(year(START_DATE)==year(today("GMT"))~"Nouvelle creation",TRUE~"Ancienne creation"))
+```
+
+## 4.Créer une variable de survie (temps écoulé entre la création et la désactivation) 
+
+```{r}
+Base_IFU_1$temps_de_survie <- difftime(Base_IFU_1$END_DATE, Base_IFU_1$START_DATE, units="weeks")/52
+# Indicateur de censure (1 si l'entreprise est désactivée, 0 si elle est encore active)  
+Base_IFU_1$statut <- ifelse(is.na(Base_IFU_1$END_DATE), 0, 1)
+```
+Création de la variable événement (1 si l'événement s'est produit, 0 sinon)
+
+```{r}
+
+Base_IFU_1$event <- ifelse(Base_IFU_1$ETAT_ACTUEL == "INACTIF", 1, 0)
+```
+
+Courbe de survie
+
+```{r}
+
+library(survival)
+library(survminer)
+
+# Estimation de la fonction de survie
+km_fit <- survfit(Surv(temps_de_survie, event) ~ 1, data = Base_IFU_1)
+
+# Visualisation avec ggplot2 via survminer
+ggsurvplot(
+  km_fit, 
+  data = Base_IFU_1, 
+  xlab = "Temps (semaines)", 
+  ylab = "Probabilité de survie", 
+  title = "Courbe de survie de Kaplan-Meier",
+  ggtheme = theme_minimal() 
+)
+```
+
+## Implementation du modele de Cox
+
+
+```{r}
+# Modèle de Cox  
+cox_model <- coxph(Surv(temps_de_survie, event) ~ SEXE+REGIME+age+Forme_Juridique+as.factor(ID_AC),data = Base_IFU_1)
+
+# Résumé du modèle
+summary(cox_model)
+
+```
+```{r}
+mod1 <- step(cox_model,k=5)
+```
+Le modele qui minimise le AIC est le dernier:Surv(temps_de_survie, event) ~ REGIME + age + Forme_Juridique
+```{r}
+cox_model <- coxph(Surv(temps_de_survie, event) ~
+                     REGIME+age+Forme_Juridique,data = Base_IFU_1)
+summary(cox_model)
+```
+
+## visualisation des coefficients du modele
+```{r}
+library(GGally, quietly = TRUE)
+ggcoef_model(mod1, exponentiate = TRUE)
+```
+## devision des données en test et en train
+```{r}
+data_train=Base_IFU_1 %>% sample_frac(0.7)
+data_test=Base_IFU_1 %>% setdiff(data_train)
+```
+## Vérification des dimensions
+```{r}
+nrow(data_train)  # Nombre de lignes dans l'ensemble d'entraînement
+nrow(data_test)   # Nombre de lignes dans l'ensemble de test
+
+```
+
+# Modélisation de survie avec le modèle de Cox
+```{r}
+cox_model_train <- coxph(Surv(temps_de_survie, event) ~
+                     REGIME+age+Forme_Juridique+SEXE,data = data_train)
+summary(cox_model_train)
+```
+#  Prédiction sur l'ensemble de test
+```{r}
+test_surv_pred <- survfit(cox_model_train, newdata = data_test)
+```
+```{r}
+ggsurvplot(test_surv_pred, data = data_test, conf.int = TRUE, 
+           ggtheme = theme_minimal(), 
+           title = "Courbe de survie pour les données de test")
+```
+
+
+
+```{r}
+# Enregistrer le modèle sur le disque
+saveRDS(cox_model_train, file = "modele_cox.rds")
+
+# chargeons le modele enfin de predire pour de nouvelles données
+modele_cox <- readRDS("modele_cox.rds")
+# nouvelles données
+new_data=data.frame(
+  "REGIME"="CMD",
+  "age"=50,
+  "Forme_Juridique"="Structures Individuelles",
+  "SEXE"="Homme"
+)
+# Prédire le risque
+predicted_risks <- predict(modele_cox, newdata = new_data, type = "risk")
+
+# Prédire la survie
+predicted_survival <- survfit(modele_cox, newdata = new_data)
+```
+# Test de proportionnalité des risques(résidus de Schoenfeld ne dépendent pas du temps.)
+```{r}
+test=cox.zph(mod1,transform = "km")
+```
+Ho:les coefficients sont stables au fil du temps
+H1:les coefficients ne sont pas stables
+Toutes les p-values etant >0.05,on ne peut pas rejeter Ho
+## visualisation du test de schoenfeld
+```{r}
+ggcoxzph(test)
+
+```
+
+## statistiques descriptives
+
+```{r}
+tbl_descc=Base_IFU_1 %>% select(REGIME,Forme_Juridique,SEXE,temps_de_survie,type_de_creation,age) %>% tbl_summary(by=SEXE)
+```
+
+```{r}
+tbl_descc %>%
+as_gt() %>%
+gt::gtsave(filename = "stats_des.pdf")
+```
+## graphiques
+```{r}
+library(GGally)
+ggbivariate(data = Base_IFU_1, outcome = "SEXE", explanatory = c("Forme_Juridique", "temps_de_survie", "type_de_creation", "age"),rowbar_args = list(
+    colour = "white",
+    size = 4,
+    fontface = "bold",
+    label_format = scales::label_percent(accurary = 1)
+  ))
+```
+
+
+
+
