@@ -1,29 +1,36 @@
 \documentclass[a4paper,12pt]{report}
-\usepackage{engrec}
-\renewcommand{\thechapter}{\Roman{chapter}.}
-\renewcommand{\thesection}{\Roman{section}.}
-\renewcommand{\thesubsection}{\arabic{subsection}.}
-\renewcommand{\thesubsubsection}{\alph{subsubsection}.}
-\renewcommand{\theparagraph}{\engrec{paragraph}.}
-\usepackage[utf8]{inputenc}
+\setlength{\headheight}{15pt}
+\renewcommand\thesection{\Roman{section}}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel} 
 \usepackage{xcolor,graphicx}
-\usepackage[top=0.6in,bottom=0.6in,right=1in,left=1in]{geometry}
-\usepackage{hyperref}
-\usepackage{enumitem}
-\usepackage{caption}   % Pour gérer les légendes
-\usepackage{float}     % Pour contrôler l'emplacement des figures
-\usepackage{booktabs}  % Pour des tableaux de meilleure qualité
-\usepackage{longtable} % Pour les tableaux qui s'étendent sur plusieurs pages
-\usepackage{setspace}
-\usepackage{fontspec}
-\usepackage{graphicx}
-% Configuration de la police
+\usepackage{fontspec} 
 \setmainfont{Times New Roman}
+\usepackage{hyperref}               % Hyperliens
+\usepackage{setspace}               % Interlignes
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{booktabs}
+  % Package pour personnaliser les en-têtes et pieds de page
+\pagestyle{fancy}      % Active le style fancyhdr
+\fancyhf{}             % Efface les en-têtes et pieds de page par défaut
 
-% Configuration de l'interligne
+% --- En-tête (haut de page) ---
+\fancyhead[C]{\leftmark} % Affiche le titre du chapitre à gauche
+
+% --- Pied de page (bas de page) ---
+\fancyfoot[C]{Mémoire de Fabrice} % Affiche "Mémoire de Fabrice" au centre
+\fancyfoot[R]{\thepage}           % Affiche le numéro de page à droite
+
+% Configure le format des titres de chapitre dans l'en-tête
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries}{\chaptername\ \thechapter}{20pt}{\huge}
+
 \onehalfspacing
+\usepackage[top=0.6in,bottom=0.6in,right=1in,left=1in]{geometry}
 %UNIVERSITE HASSAN 1$^{er}$
 \begin{document}
 \begin{titlepage}
@@ -31,7 +38,7 @@
 \begin{center}
 	\begin{minipage}{2.5cm}
 	\begin{center}
-		\includegraphics[width=2.5cm,height=1.7cm]{C:/Users/ISSP/Pictures/Nouveau dossier/download (1).jpeg}
+		\includegraphics[width=2.5cm,height=1.7cm]{images/download (1).jpeg}
 		
 	\end{center}
 \end{minipage}\hfill
@@ -44,7 +51,7 @@
 \end{minipage}\hfill
 \begin{minipage}{2.5cm}
 	\begin{center}
-		\includegraphics[width=2.3cm,height=2.5cm]{C:/Users/ISSP/Pictures/Nouveau dossier/ISSP.jpg}
+		\includegraphics[width=2.3cm,height=2.5cm]{images/ISSP.jpg}
 	\end{center}
 
 \end{minipage}
@@ -66,7 +73,7 @@
 
 \begin{minipage}{2.5cm}
 	\begin{center}
-		\includegraphics[width=2.3cm,height=2.5cm]{C:/Users/ISSP/Pictures/Nouveau dossier/dgi.jpg}
+		\includegraphics[width=2.3cm,height=2.5cm]{images/dgi.jpg}
 	\end{center}
 
 \end{minipage}
@@ -104,151 +111,565 @@
 \newpage
 % Table des matières
 \tableofcontents
-\listoffigures
-\listoftables
 \newpage
 
 
-\chapter*{Dédicace}
+\chapter*{Dedicace}
+\markboth{Dedicace}{}
 \addcontentsline{toc}{chapter}{Dedicace}
+Je dédie ce mémoire à toutes les personnes qui ont été des piliers de soutien tout au long de mon parcours.
 
+À mes parents, dont l'amour inconditionnel et les sacrifices ont toujours été ma source d'inspiration. Votre foi en mes capacités m’a permis de surmonter les défis et d’atteindre mes objectifs.
+
+À mes amis, qui ont partagé avec moi des moments de joie et de difficulté, et qui m'ont encouragé à persévérer dans mes études. Votre camaraderie et votre soutien moral ont été essentiels à ma réussite.
+
+À mes proches, qui m'ont entouré de leur affection et de leur bienveillance, je vous remercie pour votre patience et votre compréhension durant ces années de travail acharné.
+
+Ce mémoire est le fruit de mes efforts, mais il est également le reflet de l'amour et du soutien de toutes ces personnes exceptionnelles dans ma vie. Merci à chacun d'entre vous.
 % Résumé
 \chapter*{Résumé}
+\markboth{Resume}{Resume}
 \addcontentsline{toc}{chapter}{Résumé}
+Les entreprises constituent le pilier de l'économie burkinabè, jouant un rôle essentiel dans la réduction du chômage et la création de richesse. Encourager leur création est une priorité pour les pouvoirs publics, car elles représentent un vecteur de croissance et de développement. Cependant, la création d'entreprises n'est véritablement profitable que si elle mène à la constitution d'entités viables et pérennes.
 
-% Abstract
+La désactivation des entreprises, souvent signe de défaillance, freine non seulement les efforts entrepris pour stimuler l'économie, mais elle réduit également l'impact que ces entreprises pourraient avoir sur le développement national. Dans cette optique, il devient crucial d'analyser les facteurs qui influencent leur survie afin de mieux comprendre les mécanismes sous-jacents à leur réussite ou leur déclin.
+
+Au fil du temps, diverses approches méthodologiques ont été proposées pour examiner la survie et la défaillance des entreprises. Ce mémoire s’inscrit dans cette démarche en se focalisant sur la survie des entreprises au Burkina Faso. Il propose une analyse approfondie des variables influençant cette survie à l’aide d’un modèle de Cox, largement utilisé pour étudier le temps avant la survenance d'un événement. Enfin, une application dédiée est développée, offrant aux décideurs un outil prédictif capable d'estimer la date probable de désactivation des entreprises en fonction de leurs caractéristiques spécifiques.
 \chapter*{Abstract}
+\markboth{Abstract}{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
+Businesses are central to the Burkinabe economy, playing a significant role in reducing unemployment and generating wealth. Public authorities encourage their creation, viewing these entities as engines of growth and development. However, this dynamic is only beneficial if it leads to the establishment of viable and sustainable enterprises.
+
+The deactivation of businesses, often a sign of failure, not only hinders efforts to stimulate the economy but also diminishes the potential impact these businesses could have on national development. Therefore, it is essential to analyze the factors that influence their survival to better understand the mechanisms underlying their success or decline.
+
+This thesis provides an in-depth study of business survival in Burkina Faso using a Cox proportional hazards model, a widely used statistical tool for analysing the time until the occurrence of an event. Additionally, a dedicated application has been developed to offer policy-makers a predictive tool capable of estimating, based on business characteristics, the probable deactivation date. This tool aims to enhance strategies for supporting business viability.
+
+
+
 
 \chapter*{Avant-propos}
 \addcontentsline{toc}{chapter}{Avant-propos}
+L'Institut Supérieur des Sciences de la Population (ISSP) joue un rôle crucial dans le développement de compétences spécialisées au Burkina Faso. Fondé pour répondre aux enjeux complexes liés à la dynamique de la population, cet institut s'est donné pour mission de former des ingénieurs statisticiens économistes et des analystes statisticiens, afin de préparer des experts capables de relever les défis démographiques, économiques et sociaux de notre pays.
+
+À travers ses programmes de formation diversifiés, allant de la licence au doctorat, l'ISSP met l'accent sur des domaines clés tels que les sciences sociales, la démographie, la santé publique et, en particulier, l'analyse statistique. En tant qu'étudiant en analyse statistique, j'ai eu l'opportunité d'acquérir des compétences techniques et pratiques qui m'ont permis de comprendre en profondeur les enjeux de la collecte, de l'analyse et de l'interprétation des données.
+
+L'environnement académique dynamique et les enseignements de qualité dispensés par des professeurs expérimentés ont été des atouts majeurs dans mon parcours. Grâce à cette formation, j'ai pu développer une approche analytique et rigoureuse, essentielle pour mener à bien mon projet de mémoire sur la désactivation des entreprises au Burkina Faso.
+
+C'est donc avec une profonde gratitude que je remercie l'ISSP pour l'enseignement de haut niveau et les valeurs d'excellence, d'intégrité et d'engagement qu'il transmet à ses étudiants. Ce mémoire est le reflet de cet apprentissage et des compétences que j'ai pu développer au sein de cette prestigieuse institution.
 % Remerciements
 \chapter*{Remerciements}
 \addcontentsline{toc}{chapter}{Remerciements}
 
-% Remerciements
-\chapter*{Sigles et abréviations}
+Je souhaite exprimer ma sincère gratitude à toutes les personnes qui ont contribué à la réussite de mon stage au sein de la Direction Générale des Impôts, et plus particulièrement à la Direction des Enquêtes et de la Recherche Fiscale (DERF).
+
+Je tiens à remercier tout particulièrement Monsieur Kabore, mon maître de stage, pour son encadrement exemplaire, sa patience et ses conseils avisés tout au long de cette expérience. Sa capacité à partager ses connaissances et son expertise m'ont permis de développer une compréhension approfondie des enjeux liés à la fiscalité et à la modélisation des données.
+
+Je souhaite également exprimer ma reconnaissance envers Monsieur Birba et Monsieur Zerbo pour leur soutien indéfectible, leurs encouragements et leurs échanges enrichissants. Leur disponibilité et leur volonté de partager leur expérience ont été des atouts précieux dans l'accomplissement de mon projet.
+
+Un grand merci au chef de service de la DERF pour m'avoir accueilli dans son équipe et pour avoir facilité mon intégration au sein de cette institution. 
+
+Je n'oublie pas de remercier l'ensemble du personnel de la DGI pour leur accueil chaleureux, leur bienveillance et leur collaboration, qui ont grandement contribué à rendre cette expérience non seulement enrichissante sur le plan professionnel, mais également humaine.
+
+Enfin, je suis reconnaissant envers tous ceux qui ont participé, de près ou de loin, à la réalisation de ce projet. Merci à tous pour votre soutien et votre confiance.
+
+\chapter*{Sigles et abbréviations}
 \addcontentsline{toc}{chapter}{Sigles et abbréviation}
 
 % Remerciements
 \chapter*{Liste des figures et tableaux}
 \addcontentsline{toc}{chapter}{Liste des figures et tableaux}
-
+%listes des tables et figures
+\listoffigures
+\listoftables
 
 % Remerciements
-\chapter*{Chapitre 0:Présentation de la structure d'accueil}
+\chapter{Présentation de la structure d'acceuil}
 
 \addcontentsline{toc}{chapter}{Presentation de la structure d'acceuil}
 \setcounter{section}{0}
-\section{Historique de la DGI}
-\section{Organigramme de la DGI}
-\section{Missions de la DGI}
-\section{Direction des enquêtes et de la Recherche Fiscale(DERF)}
+\section*{Présentation de la direction générale des impôts et déroulement du stage}
+
+\subsection*{Historique de la DGI}
+
+La Direction Générale des Impôts (DGI) du Burkina Faso, selon l’arrêté n°2023-171/MEFP/SG/DGI, est chargée de la législation fiscale intérieure ainsi que des domaines fonciers et cadastraux. Son évolution s'est faite en plusieurs étapes :
+
+\subsubsection*{De la période coloniale à 1966 :}  
+L’administration fiscale de la Haute Volta était alors constituée d’un seul service, celui des contributions diverses, basé à Ouagadougou, et de deux divisions d’inspection à Ouagadougou et Bobo-Dioulasso. En 1966, quatre nouvelles divisions de contrôle ont été créées à Ouahigouya, Koudougou, Fada N’Gourma et Banfora, marquant le début de la déconcentration de l’administration fiscale.
+
+\subsubsection*{De 1967 à 1992 :}  
+Les prérogatives de l’administration fiscale ont été étendues avec la création d’un bureau de recherches et de vérification en 1967. Parallèlement, en 1974, la Direction des domaines et du cadastre (DDC) a été créée pour gérer le patrimoine foncier de l’État. En 1978, ces missions ont été réorganisées, donnant naissance à la DGI.
+
+\subsubsection*{De 1993 à nos jours :}  
+En 1993, les directions existantes ont été fusionnées pour former la DGI, élargissant son champ d'intervention à la fiscalité foncière, domaniale et cadastrale. Depuis 1994, la DGI a connu plusieurs mutations organisationnelles visant à améliorer le recouvrement et la gestion des contribuables.
+
+\subsubsection*{Au niveau opérationnel :}  
+La DGI a progressivement élargi ses missions au recouvrement des impôts directs des contribuables, en créant des structures sur tout le territoire national. Des divisions fiscales ont été transformées en directions à partir de 2011, et des guichets uniques ont été établis pour simplifier les formalités domaniales et foncières.
+
+\subsubsection*{Au niveau central :}  
+Des évolutions majeures incluent la création de plusieurs directions et services, comme la Direction des services fiscaux et la Direction de l’informatique, visant à renforcer l’efficacité de l’administration fiscale.
+
+Depuis sa création, la DGI a été dirigée par quinze responsables, dont madame Talato Eliane DJIGUEMDE/OUEDRAOGO, actuelle directrice. En tant que structure centrale du Ministère de l’Économie, des Finances et de la Prospective, la DGI joue un rôle stratégique essentiel dans l'élaboration et l'application des législations fiscales.
+
+\subsection*{Déroulement du stage}
+
+Du 28 juillet au 28 octobre 2024, j'ai eu l'opportunité d'effectuer un stage professionnel au sein de la Direction des Enquêtes et de la Recherche Fiscale (DERF). Ce stage s'est concentré sur la mise en place d'un modèle de prévision de la désactivation des entreprises, ce qui représente un enjeu majeur pour la DGI.
+
+Au cours de cette période, j'ai participé à un projet innovant visant à développer une application dédiée à la détection des risques de désactivation des entreprises. Cette application a pour objectif d'anticiper les facteurs pouvant mener à la désactivation, contribuant ainsi à renforcer l’efficacité des contrôles fiscaux et à améliorer la gestion des entreprises par l’administration fiscale.
+
+Ce stage m'a permis d'acquérir des compétences précieuses en analyse de données fiscales, en compréhension des enjeux liés à la désactivation des entreprises, et en développement d'outils technologiques adaptés aux besoins des administrations fiscales. Mon expérience au sein de la DGI a été déterminante pour ma formation professionnelle, m'offrant une perspective approfondie des défis actuels rencontrés par le secteur fiscal.
+
 % Introduction
-\chapter*{Chapitre 1:Introduction et Problématique}
-\addcontentsline{toc}{chapter}{Introduction et problématique}
+\chapter{Introduction et Problematique}
+\addcontentsline{toc}{chapter}{Introduction et problematique}
 \setcounter{section}{0}
+\section{Introduction generale}
+La désactivation des entreprises représente un défi majeur pour le développement économique et social d'un pays, en particulier dans un contexte comme celui du Burkina Faso, où l'entrepreneuriat est souvent considéré comme un moteur essentiel de la croissance économique et de la création d'emplois. Selon les données du rapport de la Direction des Enquêtes, de la Recherche Statistique et Fiscale, environ 16 \% des entreprises burkinabè ferment dans les cinq premières années d'existence, un taux qui souligne l'urgence d'identifier et de comprendre les facteurs sous-jacents à cette mortalité. Les entreprises jeunes, c'est-à-dire celles ayant moins de cinq ans d'activité, affichent un taux de désactivation alarmant de 30 \%, tandis que celles plus établies, ayant plus de cinq ans, présentent un taux de seulement 10 \%.
 
+Ces chiffres soulèvent des interrogations sur les causes de la mortalité des entreprises et mettent en lumière la nécessité de développer des outils adaptés pour anticiper et mitiger ces risques. Les analyses montrent que les secteurs d'activité jouent également un rôle crucial : par exemple, les entreprises opérant dans les secteurs de la construction et des services enregistrent des taux de mortalité atteignant 25 \%, contre seulement 10 \% pour celles dans le secteur technologique.
+
+Dans ce contexte, la mise en place d'un modèle de prévision de la désactivation des entreprises apparaît comme une solution pertinente. Un tel modèle permettrait d'analyser des données historiques en tenant compte de divers facteurs explicatifs, tels que l'âge de l'entreprise, le secteur d'activité, le nombre de déclarations fiscales, l'accès au financement et les compétences en gestion.
+
+L'objectif de ce mémoire est donc de concevoir un modèle de prévision robuste qui permettra d'identifier les entreprises à risque de désactivation, d'analyser les déterminants de cette mortalité et de proposer des recommandations concrètes pour améliorer la survie des entreprises au Burkina Faso. En se basant sur une approche multidisciplinaire, cette recherche aspire à contribuer à l'élaboration de politiques publiques favorisant un environnement entrepreneurial durable et dynamique, essentiel pour le développement socio-économique du pays.
 \section{Contexte et justification}
+Au Burkina Faso, le paysage entrepreneurial est marqué par une dynamique paradoxale : alors que la création d'entreprises est perçue comme un moteur essentiel de la croissance économique et de la création d'emplois, le taux de mortalité des entreprises reste alarmant. Selon des études menées par des institutions telles que l'Institut National de la Statistique et de la Démographie (INSD), environ 16 \% des entreprises ferment leurs portes dans les cinq premières années de leur existence. Les jeunes entreprises, en particulier celles de moins de 5 ans, affichent un taux de mortalité encore plus préoccupant, atteignant 30 \%. Cette situation est exacerbée dans des secteurs comme la construction et les services, où le taux de mortalité peut atteindre 25 \%, comparé à seulement 10 \% dans le secteur technologique.
 
+Ces chiffres témoignent des défis auxquels sont confrontées les entreprises burkinabè, notamment l’accès au financement, la concurrence accrue, et un environnement réglementaire complexe. De plus, les crises économiques récurrentes et l’instabilité politique peuvent aggraver ces défis, rendant la survie des entreprises d'autant plus précaire. Dans ce contexte, la compréhension des facteurs qui influencent la pérennité des entreprises devient cruciale pour formuler des stratégies de soutien adaptées.
+//
+La mise en place d'un modèle de prévision de la désactivation des entreprises revêt une importance stratégique pour les décideurs, les investisseurs, et les entrepreneurs. En identifiant les facteurs clés qui influencent la survie des entreprises, ce modèle permettra d'anticiper les risques et d'adopter des mesures préventives adaptées. Une telle approche pourrait également contribuer à la formulation de politiques publiques plus efficaces, favorisant un environnement entrepreneurial propice. De plus, en intégrant des méthodes d'analyse de survie, ce travail de recherche apportera une contribution significative à la littérature sur la dynamique entrepreneuriale au Burkina Faso, en offrant une perspective empirique sur les défis rencontrés par les entreprises.
 
-\section{Problématique}
+\section{Problematique}
 
-
+Face à la réalité alarmante de la mortalité des entreprises au Burkina Faso, il est crucial de se demander : Quels sont les principaux facteurs déterminants de la désactivation des entreprises dans le pays, et comment un modèle de prévision basé sur l'analyse de survie peut-il contribuer à anticiper ces désactivations et à promouvoir la pérennité des entreprises ?
 
 % Revue de littérature
-\chapter*{Chapitre 2:Revue de littérature}
+\chapter{Revue de littérature}
 \addcontentsline{toc}{chapter}{Revue de littérature}
 \setcounter{section}{0}
 \section{Revue Théorique}
-\subsection{Théories de la Survie des Entreprises}
-\subsubsection{Théorie des Ressources et des Capacités (RBV(Resource-Based View))}
-La Théorie des Ressources et des Capacités (RBV) stipule que les ressources et les capacités uniques d’une entreprise sont cruciales pour sa survie. Les entreprises avec des ressources précieuses, rares, inimitables et non substituables sont mieux positionnées pour survivre (Barney, 1991).
-\subsubsection{Théorie Institutionnelle}
-La Théorie Institutionnelle suggère que les entreprises doivent se conformer aux normes et attentes de l’environnement institutionnel pour survivre. Les entreprises qui s'adaptent aux pressions institutionnelles, telles que les régulations et les attentes sociales, ont de meilleures chances de survie (DiMaggio \& Powell, 1983).
-\subsubsection{Modèles de Dynamique de Population}
+\subsection{Théorie des Ressources et des Capacités (Resource-Based View, RBV)}
+
+La \textbf{Théorie des Ressources et des Capacités} (Resource-Based View ou RBV) est une approche stratégique en management qui met l'accent sur l'importance des ressources internes d'une entreprise dans la création d'un avantage concurrentiel durable. Cette théorie a été développée par des chercheurs comme \textit{Edith Penrose} (1959) et \textit{Jay Barney} (1991). Selon la RBV, la survie et la performance d'une entreprise dépendent de sa capacité à exploiter efficacement ses ressources et ses capacités distinctives.
+
+\subsubsection{Les Principes Fondamentaux de la RBV}
+La RBV repose sur l'idée que les entreprises qui possèdent des ressources et des capacités uniques, difficiles à imiter, ont un avantage compétitif sur leurs concurrents. Ces ressources et capacités peuvent être :
+\begin{itemize}
+    \item \textbf{Tangibles} : Les équipements, les infrastructures, le capital, etc.
+    \item \textbf{Intangibles} : La réputation, le savoir-faire, les compétences du personnel, les brevets, etc.
+\end{itemize}
+
+Cependant, toutes les ressources ne sont pas stratégiques. Pour qu'une ressource contribue à un avantage compétitif durable, elle doit répondre aux critères du modèle \textbf{VRIN} :
+\begin{itemize}
+    \item \textbf{Précieuse (Valuable)} : La ressource doit permettre à l'entreprise d'exploiter une opportunité ou de se défendre contre une menace.
+    \item \textbf{Rare (Rare)} : Elle doit être détenue par peu d'entreprises concurrentes, ce qui la rend unique.
+    \item \textbf{Inimitable (Inimitable)} : Il doit être difficile pour les concurrents de la copier ou de la reproduire. Cela peut être dû à des facteurs historiques, à des ambiguïtés causales (des relations complexes entre ressources et résultats), ou à des processus socialement complexes (réputation, culture).
+    \item \textbf{Non-substituable (Non-substitutable)} : Il ne doit pas exister de ressource équivalente qui puisse offrir les mêmes bénéfices stratégiques.
+\end{itemize}
+
+\subsubsection{Capacités Organisationnelles}
+
+Les \textbf{capacités organisationnelles} sont définies comme la capacité d'une entreprise à déployer ses ressources de manière efficace. Ces capacités incluent des processus tels que :
+\begin{itemize}
+    \item \textbf{L'innovation} : La capacité de l'entreprise à développer de nouveaux produits, services ou processus.
+    \item \textbf{L'apprentissage organisationnel} : La capacité de l'entreprise à s'adapter et à améliorer continuellement ses pratiques.
+    \item \textbf{La gestion des talents} : Le recrutement, la formation et la rétention de talents clés pour renforcer le capital humain de l'entreprise.
+\end{itemize}
+Ces capacités sont souvent le résultat de processus et de routines internes accumulés au fil du temps, et elles jouent un rôle crucial dans la transformation des ressources en avantages concurrentiels durables.
+
+\subsubsection{Application de la RBV dans l'Analyse de la Survie des Entreprises}
+
+La RBV est particulièrement pertinente pour une \textbf{analyse de survie des entreprises}, car elle permet d'expliquer pourquoi certaines entreprises survivent plus longtemps que d'autres. Les entreprises dotées de ressources VRIN et de capacités organisationnelles fortes sont mieux équipées pour résister aux pressions du marché et à l'environnement concurrentiel. Voici quelques exemples de l'application de la RBV dans le cadre de l'analyse de survie :
+\begin{itemize}
+    \item \textbf{Capacités d'innovation} : Une entreprise innovante, capable de lancer régulièrement de nouveaux produits ou services, est plus à même de se différencier de ses concurrents et de prolonger sa durée de vie.
+    \item \textbf{Accès aux marchés publics} : Les entreprises ayant un accès privilégié aux marchés publics disposent de ressources financières stables qui peuvent améliorer leurs chances de survie, surtout en période de crise économique.
+    \item \textbf{Capital humain} : Une entreprise ayant une équipe hautement qualifiée et expérimentée dispose d'une ressource intangible difficile à imiter, ce qui peut être un facteur clé dans sa capacité à se maintenir sur le long terme.
+\end{itemize}
+
+\subsubsection{Limites de la Théorie des Ressources et des Capacités}
+
+Bien que la RBV offre une perspective puissante sur l'avantage concurrentiel, elle présente certaines limites dans l'analyse de survie :
+\begin{itemize}
+    \item \textbf{Sous-estimation des facteurs externes} : La RBV se concentre principalement sur les ressources internes, et elle peut négliger les influences externes, telles que les changements dans la réglementation, les forces du marché ou les crises économiques.
+    \item \textbf{Difficulté à identifier les ressources VRIN} : Il n'est pas toujours évident de déterminer quelles ressources possèdent réellement les caractéristiques VRIN, et cela peut être sujet à des interprétations subjectives.
+    \item \textbf{Évolution rapide des marchés} : Dans un environnement dynamique, une ressource ou une capacité qui est considérée comme précieuse aujourd'hui peut rapidement perdre de sa valeur avec l'évolution technologique ou les changements dans la demande des consommateurs.
+\end{itemize}
+
+\subsection{Théorie Institutionnelle}
+
+La \textbf{Théorie Institutionnelle} est une approche en sciences sociales qui met en avant l'influence des normes, des règles et des valeurs sociales sur les comportements organisationnels. Cette théorie, développée par des chercheurs comme \textit{John Meyer} et \textit{Brian Rowan} (1977) ainsi que \textit{Paul DiMaggio} et \textit{Walter Powell} (1983), suggère que les organisations adoptent des structures et des pratiques conformes aux attentes institutionnelles pour acquérir et maintenir leur légitimité dans leur environnement.
+
+\subsubsection{Fondements de la Théorie Institutionnelle}
+
+Les organisations subissent trois types de pressions institutionnelles :
+\begin{itemize}
+    \item \textbf{Pressions coercitives} : Issues des régulations légales et des exigences formelles imposées par les gouvernements ou d'autres institutions.
+    \item \textbf{Pressions mimétiques} : En période d'incertitude, les organisations imitent les comportements des entreprises performantes pour réduire les risques perçus.
+    \item \textbf{Pressions normatives} : Dépendant de la professionnalisation et des valeurs partagées au sein de l'industrie ou de la société.
+\end{itemize}
+
+\subsubsection{Légitimité et Survie Organisationnelle}
+
+La survie des entreprises dépend de leur capacité à acquérir et à maintenir leur \textbf{légitimité} en respectant les normes et les attentes de leur environnement institutionnel. Une organisation perçue comme légitime est mieux à même d'attirer des ressources, de créer des relations avec les parties prenantes, et d'éviter les sanctions.
+
+\subsubsection{Isomorphisme Institutionnel}
+
+L'\textbf{isomorphisme} institutionnel est le processus par lequel les organisations deviennent de plus en plus similaires en réponse aux pressions institutionnelles. DiMaggio et Powell (1983) identifient trois types d'isomorphisme :
+\begin{itemize}
+    \item \textbf{Coercitif} : Résultat de contraintes légales et régulatoires.
+    \item \textbf{Mimétique} : Résultat de l'incertitude, où les organisations imitent les leaders du marché.
+    \item \textbf{Normatif} : Résultat de la standardisation des pratiques professionnelles.
+\end{itemize}
+
+\subsubsection{Application dans l'Analyse de la Survie des Entreprises}
+
+Dans le cadre d'une analyse de survie des entreprises, la Théorie Institutionnelle aide à comprendre comment les pressions environnementales influencent les pratiques organisationnelles. Les entreprises conformes aux attentes institutionnelles, telles que le respect des régulations et l'adoption de pratiques largement acceptées, ont tendance à survivre plus longtemps.
+
+\subsubsection{Limites de la Théorie Institutionnelle}
+
+La théorie institutionnelle présente cependant certaines limites :
+\begin{itemize}
+    \item \textbf{Sur-représentation des facteurs externes} : Elle met l'accent sur les pressions institutionnelles au détriment des capacités internes d'innovation.
+    \item \textbf{Manque de flexibilité} : Une trop grande conformité aux normes institutionnelles peut limiter la capacité d'adaptation des entreprises.
+\end{itemize}
+
+\subsection{Modèles de Dynamique de Population}
 Les Modèles de Dynamique de Population se concentrent sur la dynamique de la population d’entreprises dans un marché, expliquant comment les taux de naissance et de mortalité des entreprises évoluent en fonction des conditions économiques et du marché (Hannan \& Freeman, 1977).
-\subsection{Modèles de Prévision de la Désactivation}
-\subsubsection{Modèle de Cox (Proportional Hazards Model)}
-Utilisé pour analyser le temps jusqu’à la désactivation en fonction des covariables. Ce modèle est adapté pour des données censurées (Cox, 1972).
-\subsubsection{Régression Logistique}
-Modèle qui prédit la probabilité de désactivation en fonction des variables explicatives. Ce modèle est utile pour les données binaires (Hosmer \& Lemeshow, 2000).
-\subsubsection{Analyse de Survie}
-L’Analyse de Survie examine la durée de survie des entreprises et peut être utilisée pour estimer les taux de désactivation en fonction des caractéristiques des entreprises (Kalbfleisch \& Prentice, 2002).
 
 \section{Revue empirique}
 \subsection{Analyse des Données sur la Mortalité des Entreprises}
 \subsubsection{Le taux de mortalité des entreprises et ses déterminants}
-Cet article fournit les chiffres suivants : - Taux de mortalité par âge de l’entreprise : Les entreprises jeunes (moins de 5 ans) ont un taux de mortalité de 30 \%, contre 10 \% pour les entreprises plus âgées. Source - Secteur d’activité : Les entreprises dans les secteurs de la construction et des services ont des taux de mortalité plus élevés (25 \%) comparés aux secteurs de la technologie (10 \%).
+Cet article fournit les chiffres suivants : \\
+- Taux de mortalité par âge de l’entreprise : Les entreprises jeunes (moins de 5 ans) ont un taux de mortalité de 30 \%, contre 10 \% pour les entreprises plus âgées. \\
+ - Secteur d’activité : Les entreprises dans les secteurs de la construction et des services ont des taux de mortalité plus élevés (25 \%) comparés aux secteurs de la technologie (10 \%).
 \subsubsection{Mortalités des entreprises : Étude du CRI de Casablanca}
-Cette étude révèle : - Taux de mortalité dans la région de Casablanca : Environ 18 \% des entreprises ferment dans les 3 premières années d’existence. - Facteurs déterminants : L’accès au financement et les compétences en gestion sont des facteurs critiques. Les entreprises ayant des difficultés d’accès au crédit ont un taux de mortalité 20 \% plus élevé. Source
+Cette étude révèle : \\
+- Taux de mortalité dans la région de Casablanca : Environ 18 \% des entreprises ferment dans les 3 premières années d’existence. \\
+- Facteurs déterminants : L’accès au financement et les compétences en gestion sont des facteurs critiques. Les entreprises ayant des difficultés d’accès au crédit ont un taux de mortalité 20 \% plus élevé. \\
 \subsection{Études de Cas Régionales}
 \subsubsection{Situation des entreprises : Taux de mortalité évalué à plus de 16 \%} 
-Au Burkina Faso, le rapport indique :
-\begin{itemize}[label=\textbullet]
-\item Taux de mortalité : Environ 16 \% des entreprises ferment dans les 5 premières années. 
-\item Facteurs économiques : L’instabilité économique et la régulation sont des facteurs majeurs influençant la mortalité des entreprises.
+Au Burkina Faso, le rapport indique :\\
+  Taux de mortalité : Environ 16 \% des entreprises ferment dans les 5 premières années. \\
+ 
+  - Facteurs économiques : L’instabilité économique et la régulation sont des facteurs majeurs influençant la mortalité des entreprises.
+\subsubsection{Rapport sur la mortalité des entreprises au Cameroun}
+Le rapport montre : \\ 
+- Taux de désactivation au Cameroun : Près de 20 \% des entreprises ferment dans les 5 premières années. \\
+ - Facteurs influents : Les défis économiques et la concurrence sont des déterminants clés. Les entreprises confrontées à une forte concurrence ont un taux de mortalité 15 \% plus élevé.
+\subsubsection{Modélisation et prévision de la mortalité des entreprises}
+Les méthodologies recommandées incluent : \\
+- Modèle de Cox : Adapté pour les données censurées, utilisé pour prédire le temps jusqu’à la désactivation en fonction des caractéristiques de l’entreprise. \\
+- Régression Logistique : Prédit les chances de désactivation en fonction de variables explicatives. \\
+\subsubsection{Taux de décès des entreprises employant des salariés}
+Ce rapport montre que le taux de décès des entreprises employant des salariés est de 12 \% en moyenne, comparé à 18 \% pour les entreprises sans salariés.
+
+\section{Hypothèses de Recherche}
+
+\subsection{Hypothèse sur l'Âge de l’Entreprise}
+\begin{itemize}
+    \item \textbf{H1} : Les entreprises plus jeunes (moins de 5 ans) présentent un taux de désactivation plus élevé que les entreprises plus anciennes (plus de 10 ans).
+    \item \textbf{H2} : L'âge de l'entreprise est un facteur déterminant dans la pérennité des entreprises, avec un taux de survie qui augmente avec l'ancienneté.
 \end{itemize}
 
-\subsubsection{Rapport sur la mortalité des entreprises au Cameroun}
-Le rapport montre : - Taux de désactivation au Cameroun : Près de 20 \% des entreprises ferment dans les 5 premières années. Source - Facteurs influents : Les défis économiques et la concurrence sont des déterminants clés. Les entreprises confrontées à une forte concurrence ont un taux de mortalité 15 \% plus élevé.
-\subsubsection{Modélisation et prévision de la mortalité des entreprises}
-Les méthodologies recommandées incluent : - Modèle de Cox : Adapté pour les données censurées, utilisé pour prédire le temps jusqu’à la désactivation en fonction des caractéristiques de l’entreprise. - Régression Logistique : Prédit les chances de désactivation en fonction de variables explicatives. Source
-\subsubsection{Taux de décès des entreprises employant des salariés}
-Ce rapport montre : - Taux de décès : Les entreprises employant des salariés ont un taux de décès de 12 \% en moyenne, comparé à 18 \% pour les entreprises sans salariés. Source
-\section{Méthodologies de Modélisation}
+\subsection{Hypothèse sur le Sexe des Dirigeants}
+\begin{itemize}
+    \item \textbf{H3} : Les entreprises dirigées par des femmes ont un taux de désactivation différent de celles dirigées par des hommes, en raison de divers facteurs socio-économiques.
+    \item \textbf{H4} : Le sexe du dirigeant influence les performances économiques des entreprises, les femmes étant sous-représentées dans les secteurs à forte rentabilité.
+\end{itemize}
 
-\chapter*{Chapitre 3: Méthodologie}
+\subsection{Hypothèse sur la Forme Juridique}
+\begin{itemize}
+    \item \textbf{H5} : Les entreprises ayant une forme juridique de type "Société à Responsabilité Limitée (SARL)" ont un taux de désactivation plus faible que celles opérant en tant qu'Entreprises Individuelles.
+    \item \textbf{H6} : La forme juridique de l'entreprise a un impact significatif sur sa capacité à attirer des financements et à survivre sur le long terme.
+\end{itemize}
+
+\subsection{Hypothèse sur le Régime Fiscal}
+\begin{itemize}
+    \item \textbf{H7} : Les entreprises soumises à un régime fiscal simplifié présentent un taux de désactivation supérieur à celles sous un régime réel normal, en raison d'une charge fiscale plus lourde ou d'une gestion moins rigoureuse.
+    \item \textbf{H8} : Les entreprises bénéficiant d'exonérations fiscales ou d'incitations fiscales ont un taux de survie plus élevé que celles qui ne bénéficient pas de telles mesures.
+\end{itemize}
+
+ 
+\chapter{Méthodologie}
 \addcontentsline{toc}{chapter}{Méthodologie}
 \setcounter{section}{0}  % Reset section counter
 \renewcommand\thesection{\Roman{section}} 
-\section{Données}
+En rappelle,notre etude consiste a predire la date probable de la desactivation des entreprises en fonction des caracteristiques propres a l'entreprise et au personnel.Dans l'optique de repondre a cet objectif ,nous avons fait usage du modele de cox tres apprecie pour traiter les cas d'analyse de survie avec des caracteristiques.
+Dans cette partie ,nous allons presenter le modele de cox et les donnees qui ont servie a l'implementation du modele.
+\section{Specification du modele de cox}
+\subsection{Présentation du modèle choisi : Modèle de Cox}
+Le modèle de Cox, également connu sous le nom de modèle de risques proportionnels de Cox, est une méthode statistique largement utilisée pour l'analyse de survie. Ce modèle permet d'examiner le temps jusqu'à un événement d'intérêt, tel que la désactivation d'une entreprise, tout en tenant compte des effets de plusieurs variables explicatives. Contrairement à d'autres modèles, le modèle de Cox ne nécessite pas que les données soient distribuées selon une loi particulière, ce qui en fait un choix flexible et puissant pour l'analyse de survie.
 
-\section{Sélection des variables}
+\subsection{Justification du choix du modèle}
+Le choix du modèle de Cox est justifié pour plusieurs raisons :
 
-\section{Analyse descriptive}
+\begin{itemize}
+    \item \textbf{Flexibilité} : Il ne nécessite pas d'hypothèses fortes concernant la distribution du temps de survie, ce qui est souvent difficile à respecter dans les données réelles.
+    \item \textbf{Interprétabilité} : Les résultats du modèle sont facilement interprétables en termes de rapports de risques (Hazard Ratios, HR), ce qui permet de quantifier l'effet des variables explicatives sur le risque d'événement.
+    \item \textbf{Gestion de la censure} : Le modèle de Cox est particulièrement adapté pour traiter les données censurées, ce qui est fréquent dans les études de survie.
+\end{itemize}
+
+\subsection{Censure}
+\subsubsection{Explication des types de censure présents dans vos données}
+La censure est un élément essentiel à prendre en compte dans l'analyse de survie. Elle se produit lorsque le temps d'événement d'intérêt (par exemple, la désactivation d'une entreprise) n'est pas complètement observé. Il existe principalement deux types de censure :
+
+\begin{itemize}
+    \item \textbf{Censure à droite} : Cela se produit lorsque l'événement d'intérêt ne s'est pas produit avant la fin de l'observation. Par exemple, si une entreprise est toujours active à la fin de la période d'étude, son temps de survie est censuré à droite.
+    \item \textbf{Censure à gauche} : Ce type de censure se produit lorsque l'événement d'intérêt s'est produit avant le début de l'observation. Dans le contexte de la désactivation d'une entreprise, cela pourrait arriver si l'on n'a pas accès à des données historiques.
+\end{itemize}
+
+\subsubsection{Impact de la censure sur l'analyse}
+La censure peut introduire un biais dans l'estimation des temps de survie si elle n'est pas correctement prise en compte. Le modèle de Cox est conçu pour gérer ce problème, car il utilise des méthodes de maximum de vraisemblance qui intègrent les données censurées. En ne tenant pas compte de la censure, on pourrait surestimer ou sous-estimer le risque d'événement, ce qui peut conduire à des conclusions erronées sur les facteurs qui influencent la désactivation des entreprises.
+
+\subsection{Interprétation des résultats}
+\subsubsection{Interprétation des coefficients}
+L'interprétation des coefficients du modèle de Cox est cruciale pour comprendre comment les différentes variables explicatives influencent le risque de désactivation des entreprises. Chaque coefficient (\( \beta \)) dans le modèle indique l'effet d'une variable explicative sur le risque instantané de l'événement d'intérêt. Voici comment interpréter ces coefficients :
+
+\begin{itemize}
+    \item \textbf{Coefficients positifs (\( \beta > 0 \))} : Un coefficient positif signifie qu'une augmentation de la variable explicative est associée à un risque accru de désactivation. Par exemple, si le coefficient associé à l'âge de l'entreprise est \( \beta = 0.3 \), cela signifie qu'une augmentation d'un an de l'âge de l'entreprise est associée à une augmentation du risque de désactivation. En termes de rapport de risques (HR), cela se traduit par :
+    
+    \[
+    HR = e^{0.3} \approx 1.35
+    \]
+    
+    Cela indique qu'une entreprise âgée d'un an de plus a environ 35 \% de risques supplémentaires de se désactiver par rapport à une entreprise plus jeune.
+
+    \item \textbf{Coefficients négatifs (\( \beta < 0 \))} : À l'inverse, un coefficient négatif indique qu'une augmentation de la variable explicative est associée à une réduction du risque de désactivation. Par exemple, si le coefficient lié au nombre de contrats publics est \( \beta = -0.5 \), cela signifie qu'une augmentation d'un contrat est associée à une diminution du risque de désactivation. Le rapport de risques serait :
+    
+    \[
+    HR = e^{-0.5} \approx 0.61
+    \]
+    
+    Cela signifie qu'une entreprise avec un contrat supplémentaire a environ 39 \% de risques en moins de se désactiver.
+
+    \item \textbf{Interprétation en termes de rapport de risques (HR)} : Les rapports de risques permettent de quantifier l'impact des variables explicatives sur le risque d'événement. Un HR supérieur à 1 indique un risque accru, tandis qu'un HR inférieur à 1 indique un risque réduit.
+    
+    \begin{itemize}
+        \item \textbf{Exemple concret} : Supposons qu'une variable « nombre de redressements » ait un coefficient de \( \beta = 0.8 \). Le rapport de risques serait :
+        
+        \[
+        HR = e^{0.8} \approx 2.22
+        \]
+        
+        Cela indique qu'une entreprise ayant subi un redressement a environ 122 \% de risques supplémentaires de désactivation par rapport à une entreprise n'ayant pas subi de redressement.
+    \end{itemize}
+
+    \item \textbf{Implications pratiques} : L'interprétation des coefficients a des implications pratiques pour les gestionnaires d'entreprise et les décideurs. Par exemple, si l'âge et le nombre de redressements sont des facteurs de risque importants, les entreprises peuvent envisager des stratégies pour atténuer ces risques, comme l'amélioration de la gestion financière ou l'optimisation des opérations pour éviter les redressements.
+\end{itemize}
+\section{Justification des variables du modele de cox}
+
+\section{Sources de Données}
+
+Les données utilisées dans cette étude proviennent du \textbf{datawarehouse de la Direction Générale des Impôts (DGI)} du Burkina Faso. Ce datawarehouse est une base de données centralisée qui collecte, stocke et gère les informations fiscales des entreprises enregistrées dans le pays. Il constitue une ressource essentielle pour l’analyse statistique et la prise de décision dans le domaine fiscal et économique.
+
+\section{Sélection des Variables}
+
+Pour cette étude, plusieurs variables clés ont été extraites du datawarehouse. Ces variables ont été choisies en fonction de leur pertinence pour l’analyse de la désactivation des entreprises et leur capacité à fournir des informations significatives sur les tendances et les caractéristiques des entreprises au Burkina Faso.
+
+\subsection{1. Âge de l’Entreprise}
+\begin{itemize}
+    \item \textbf{Description} : L'âge de l'entreprise est mesuré en années depuis sa création jusqu'à la date d'analyse.
+    \item \textbf{Importance} : Cette variable permet d'évaluer la durée de vie des entreprises et d'analyser les taux de désactivation en fonction de l'ancienneté. Les entreprises plus jeunes peuvent être plus susceptibles de se désactiver en raison de divers facteurs économiques ou de gestion.
+\end{itemize}
+
+\subsection{2. Sexe}
+\begin{itemize}
+    \item \textbf{Description} : Cette variable fait référence au sexe du propriétaire ou des dirigeants de l'entreprise. Les options incluent "Masculin" et "Féminin".
+    \item \textbf{Importance} : L'analyse du sexe des dirigeants peut fournir des informations sur les disparités de genre dans le secteur entrepreneurial et leur impact sur la pérennité des entreprises. Cela peut également aider à identifier des tendances spécifiques liées à la gestion et à la performance des entreprises selon le genre.
+\end{itemize}
+
+\subsection{3. Forme Juridique}
+\begin{itemize}
+    \item \textbf{Description} : La forme juridique de l'entreprise désigne le cadre légal dans lequel elle opère. Les modalités incluent, entre autres, "Société à Responsabilité Limitée (SARL)", "Société Anonyme (SA)", "Coopérative", et "Entreprise Individuelle".
+    \item \textbf{Importance} : La forme juridique peut influencer la structure de l'entreprise, la responsabilité des propriétaires, et l'accès au financement. Cette variable est cruciale pour comprendre comment la structure juridique impacte la survie des entreprises et leur vulnérabilité aux désactivations.
+\end{itemize}
+
+\subsection{4. Régime Fiscal}
+\begin{itemize}
+    \item \textbf{Description} : Cette variable indique le régime fiscal sous lequel l'entreprise est enregistrée. Cela peut inclure des régimes tels que le régime simplifié, le régime réel normal, etc.
+    \item \textbf{Importance} : Le régime fiscal a un impact direct sur les obligations fiscales de l'entreprise, sa charge financière et sa capacité à se conformer aux réglementations. Comprendre le lien entre le régime fiscal et la désactivation des entreprises peut éclairer les politiques fiscales et réglementaires à mettre en œuvre pour soutenir la pérennité des entreprises.
+\end{itemize}
 
 % Résultats
-\chapter*{Chapitre 4:Résultats}
+\newpage
+\chapter{Résultats}
 \addcontentsline{toc}{chapter}{Résultats}
+\subsection{Analyse descriptive}
+
+\subsection{Analyse descriptive}
+
+% Inclusion du tableau des caractéristiques
+\input{../../Desktop/tableaux/caracteristiques}
+
+% Commentaire directement sous le tableau
+\noindent
+Le tableau présente une analyse descriptive des caractéristiques de 145 097 entités. Concernant le régime fiscal, la majorité (81 \%) des entités est soumise au régime CME, contre seulement 19 \% pour le CMD, ce qui suggère une préférence pour les conditions offertes par le CME, potentiellement plus adaptées aux besoins des entreprises. En termes de forme juridique, les structures individuelles sont très majoritaires (84 \%), comparativement aux sociétés (16 \%). Cela pourrait traduire une dynamique entrepreneuriale favorisant des modèles plus souples et moins formels, souvent choisis par les entrepreneurs indépendants ou pour des activités de plus petite envergure.
+
+La répartition par sexe montre une prédominance féminine, avec 67 \% de femmes, tandis que les hommes et les personnes morales représentent chacun 16 \% de l’échantillon. Cette surreprésentation féminine peut refléter des initiatives favorisant l’inclusion économique des femmes. Pour le temps de survie, la médiane est de 0,87 an, avec un intervalle interquartile allant de 0,01 à 3,22 ans, ce qui indique que de nombreuses entités ont une durée de vie limitée, suggérant peut-être des difficultés de pérennité dans le contexte économique étudié. Enfin, la majorité des entités se situe dans la tranche d’âge 52-54 ans (64 \%), par rapport aux 50-52 ans (36 \%), ce qui peut traduire une certaine stabilité au fil des années, ou une tendance vers des cycles de vie d’entreprises plus longs.
+
+% Insertion de la nouvelle page pour la table de Cox
+\newpage
+
+% Inclusion du tableau des résultats de Cox
+\input{../../Desktop/tableaux/cox_table}
+
+% Commentaire directement sous le tableau
+\noindent
+\begin{itemize}
+    \item Concernant le sexe, les hommes ont un HR de 0,69 par rapport aux femmes (p < 0,001), indiquant une probabilité de survie plus élevée pour les hommes que pour les femmes, utilisée ici comme groupe de référence. Quant aux personnes morales, avec un HR de 1,35 (p = 0,5), leur survie ne diffère pas de manière significative de celle des femmes, ce qui montre que le statut de personne morale n’influence pas notablement le risque de désactivation.
+
+    \item Le régime fiscal montre une forte association avec la survie des entités. Les entreprises sous le régime CME ont un HR de 0,48 par rapport à celles sous le régime CMD (p < 0,001), ce qui indique une probabilité de survie significativement plus élevée dans le cadre du CME. Cela peut suggérer que le régime CME offre des avantages fiscaux ou des stabilités favorisant une plus grande résilience des entreprises.
+
+    \item Pour l’âge, les entités du groupe (52,54] affichent un HR de 0,00 comparativement à celles du groupe [50,52] (p < 0,001). Cet HR très bas pourrait indiquer que les entités légèrement plus âgées sont particulièrement stables et résilientes, montrant un risque de désactivation pratiquement nul.
+
+    \item Enfin, la forme juridique joue un rôle significatif : les structures individuelles ont un HR de 0,40 par rapport aux sociétés (p = 0,021), ce qui suggère une survie nettement supérieure pour les entreprises individuelles par rapport aux sociétés formelles. Cette différence pourrait s’expliquer par une souplesse administrative ou des coûts de fonctionnement réduits chez les structures individuelles.
+\end{itemize}
+
+
+\subsection{Analyse de la survie en fonction des caracteristiques}
+% Insertion des graphiques de courbes de survie
+\begin{figure}[H]
+    \centering
+
+    % Premier graphique à gauche
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \fbox{\includegraphics[width=\linewidth]{../../Desktop/resultats/courbe_survie_par_sexe.pdf}}
+        \caption{Courbe de survie par sexe}
+        \label{fig:survie_sexe}
+    \end{minipage}
+    \hfill
+    % Graphique de survie régime
+    \begin{minipage}{0.48\textwidth} % Adjusted to 0.48 for better layout
+        \centering
+        \fbox{\includegraphics[width=\linewidth]{../../Desktop/resultats/courbe_survie_par_regime.pdf}}
+        \caption{Courbe de survie par régime}
+        \label{fig:survie_regime_complete}
+    \end{minipage}
+
+    \vspace{1em} % Espacement vertical entre les lignes de graphiques
+
+    % Troisième graphique à gauche
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \fbox{\includegraphics[width=\linewidth]{../../Desktop/resultats/courbe_survie_par_FORME_J_ABREGE.pdf}}
+        \caption{Courbe de survie par forme juridique abrégée}
+        \label{fig:survie_forme_juridique}
+    \end{minipage}
+    \hfill
+    % Quatrième graphique à droite
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \fbox{\includegraphics[width=\linewidth]{../../Desktop/resultats/courbe_survie_par_age.pdf}}
+        \caption{Courbe de survie par âge}
+        \label{fig:survie_age}
+    \end{minipage}
+
+\end{figure} % Closing the figure environment
+
+\begin{itemize}
+    \item \textbf{Survie par sexe pour les entreprises individuelles}
+    \begin{itemize}
+        \item \textit{Entreprises individuelles gérées par des hommes vs. femmes} : Les entreprises individuelles dirigées par des hommes affichent une probabilité de survie plus élevée que celles gérées par des femmes. Ce constat pourrait indiquer l’existence de différences dans l’accès aux ressources, aux réseaux de soutien ou aux opportunités de financement. Il pourrait également refléter des obstacles structurels rencontrés par les femmes dans la gestion d'entreprises, ce qui peut affecter leur capacité à maintenir leur activité sur le long terme.
+        \item \textit{Implications} : La mise en place de programmes de soutien spécifiques aux femmes entrepreneurs, comme l’accompagnement, le mentorat ou des facilités d’accès au crédit, pourrait contribuer à renforcer la survie des entreprises dirigées par des femmes.
+    \end{itemize}
+    
+    \item \textbf{Survie par régime fiscal (CME vs. CMD)}
+    \begin{itemize}
+        \item \textit{Régime CME vs. CMD} : Les entreprises sous le régime fiscal CME (contribution des micro-entreprises) montrent des taux de survie plus élevés comparativement à celles sous le régime CMD (contribution des moyennes entreprises). Cette observation pourrait être due aux avantages fiscaux ou aux charges réduites dont bénéficient les micro-entreprises, ou à leur capacité à s’adapter plus rapidement aux aléas économiques.
+        \item \textit{Analyse} : Cette différence souligne le besoin d’ajuster les politiques fiscales appliquées aux moyennes entreprises sous le régime CMD pour améliorer leur durabilité. Un allègement fiscal ou des incitations spécifiques pourraient renforcer leur résilience face aux défis économiques.
+    \end{itemize}
+
+    \item \textbf{Survie par forme juridique (Sociétés vs. Structures individuelles)}
+    \begin{itemize}
+        \item \textit{Égalité de survie initiale} : Pendant les deux premières années, les sociétés et les structures individuelles montrent des taux de survie similaires, ce qui pourrait être expliqué par des facteurs communs de démarrage, tels que l’adaptation aux exigences administratives et la recherche d’une clientèle fidèle.
+        \item \textit{Survie différenciée après deux ans} : Au-delà de deux ans, la survie des structures individuelles devient nettement plus élevée que celle des sociétés. Cette tendance pourrait indiquer que les structures individuelles, souvent plus agiles et moins soumises à des charges administratives lourdes, s’adaptent mieux aux fluctuations du marché. En revanche, les sociétés peuvent rencontrer des difficultés qui limitent leur longévité en raison de leurs obligations administratives et de gouvernance plus strictes.
+        \item \textit{Suggestions} : Les sociétés pourraient bénéficier de stratégies renforçant leur flexibilité et leur capacité d’adaptation, telles que la diversification de leurs activités et l’optimisation de leur gestion des ressources dès les premières années.
+    \end{itemize}
+
+    \item \textbf{Survie en fonction de l’âge de l’entreprise}
+    \begin{itemize}
+        \item \textit{Longévité accrue avant 52 ans} : Les entreprises de moins de 52 ans montrent des taux de survie plus élevés, possiblement grâce à une capacité de renouvellement et d’adaptation plus importante.
+        \item \textit{Déclin rapide au-delà de 52 ans} : Passé ce seuil d’âge, les entreprises connaissent un déclin rapide, ce qui pourrait être dû à des rigidités organisationnelles, un manque d'innovation ou des transitions de leadership mal gérées.
+    \end{itemize}
+\end{itemize}
+ 
+
 
 % Discussion
-\chapter*{Chapitre 5:Discussion}
+\chapter{Discussion}
 \addcontentsline{toc}{chapter}{Discussion}
+\subsection{Influence du Sexe}
+Les résultats montrent que les entreprises dirigées par des hommes ont un hazard ratio (HR) de 0,69 par rapport à celles dirigées par des femmes, avec une p-valeur significative (< 0,001). Ce résultat suggère que les entreprises masculines semblent avoir une plus grande résilience, c’est-à-dire une probabilité de survie plus élevée que celles dirigées par des femmes. Plusieurs facteurs pourraient expliquer cette différence, notamment l'accès aux ressources et aux réseaux financiers, ainsi que des différences potentielles dans les stratégies de gestion. Toutefois, cette observation pourrait également refléter des inégalités structurelles plus larges au sein de l'environnement entrepreneurial.
+
+Pour les personnes morales, l'absence de différence significative avec les entreprises féminines (HR de 1,35 ; p = 0,5) indique que la survie des entités juridiques collectives ou institutionnelles n’est pas significativement influencée par le genre des dirigeants. Cela montre que le statut de personne morale ne confère pas d’avantages particuliers dans le contexte étudié.
+
+\subsection{Effet du Régime Fiscal}
+Le régime fiscal de l'entreprise semble être un facteur majeur de sa survie. Les entreprises sous le régime du CME présentent un HR de 0,48 par rapport aux entreprises sous le régime CMD, avec une p-valeur < 0,001. Cela signifie que les entreprises sous le régime CME sont moins susceptibles d'être désactivées, ce qui pourrait s'expliquer par des bénéfices fiscaux ou une flexibilité administrative accrue. Ce constat pourrait inciter les décideurs politiques à envisager des aménagements fiscaux pour soutenir les entreprises en difficulté, ou à promouvoir les avantages du régime CME auprès des entreprises, afin d’améliorer leur résilience et leur pérennité.
+
+\subsection{Impact de l'Âge de l'Entreprise}
+L'âge des entreprises joue également un rôle significatif dans leur probabilité de survie. Les entités du groupe d'âge (52,54] présentent un HR extrêmement bas par rapport aux entreprises dans le groupe [50,52] (HR = 0,00 ; p < 0,001). Cet indicateur pourrait refléter une plus grande stabilité des entreprises plus matures, souvent dotées de structures organisationnelles et de marchés consolidés. La faible probabilité de désactivation des entreprises légèrement plus âgées pourrait être interprétée comme un signe de réussite des entreprises qui atteignent cette maturité, possiblement en raison de leur expérience accrue ou de leur adaptation progressive aux défis économiques.
+
+\subsection{Influence de la Forme Juridique}
+La forme juridique des entreprises se révèle également cruciale pour leur survie. Les structures individuelles affichent un HR de 0,40 par rapport aux sociétés, avec une p-valeur significative (p = 0,021), suggérant une probabilité de survie plus élevée. Les structures individuelles, souvent moins complexes que les sociétés, pourraient bénéficier de coûts de gestion réduits et d'une plus grande souplesse dans la prise de décisions, ce qui pourrait faciliter leur adaptation aux changements du marché et aux crises économiques. Ce constat soulève des questions sur l’efficacité des formes juridiques plus structurées pour les petites entreprises, et pourrait encourager une révision des charges administratives pour favoriser la résilience des entreprises plus formelles.
 
 
 % Conclusion
-\chapter*{Conclusion}
+\chapter{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
+Au terme de cette recherche, nous avons mis en lumière les facteurs clés influençant la survie des entreprises dans le contexte du Burkina Faso, en analysant spécifiquement l'impact du régime fiscal, de la forme juridique, du sexe des dirigeants et de l'âge des entreprises. Les résultats obtenus révèlent des dynamiques complexes qui méritent d'être approfondies.
+
+\subsection{Résumé des Découvertes}  
+Les analyses statistiques montrent que le régime fiscal joue un rôle crucial dans la résilience des entreprises, avec un avantage significatif pour celles sous le régime de la Contribution des Moyens d’Exploitation (CME). De plus, les entreprises dirigées par des hommes présentent un taux de survie supérieur par rapport à celles dirigées par des femmes, soulignant des disparités de genre qui reflètent des inégalités structurelles dans l'environnement entrepreneurial. L'âge des entreprises se révèle également déterminant, les structures plus anciennes ayant une meilleure stabilité financière.
+
+\subsection{Interprétation des Résultats}  
+Ces résultats sont cohérents avec les travaux de Beck et al. (2008), qui affirment que le cadre fiscal peut influencer la rentabilité des entreprises. L'observation concernant le sexe des dirigeants fait écho aux recherches d'Eddleston et Powel (2008), qui soulignent les défis particuliers rencontrés par les femmes entrepreneurs. Par ailleurs, l'impact de l'âge des entreprises sur leur survie corroborent les idées de Carree et Thurik (2008) sur l'expérience et la résilience.
+
+\subsection{Recommandations}  
+À la lumière de ces conclusions, il est recommandé que les décideurs politiques envisagent des ajustements dans le cadre fiscal afin de soutenir les PME, en particulier celles dirigées par des femmes. De plus, la mise en place de programmes de mentorat et de soutien aux femmes entrepreneurs pourrait contribuer à réduire les inégalités observées. Enfin, des mesures visant à encourager la pérennité des jeunes entreprises seraient bénéfiques pour le développement économique.
+Nous recommandons egalement une application de saisi des donnees et la creation d'un questionnaire uniforme pour les entreprises
 
 % Bibliographie
-\begin{thebibliography}{99}
 \addcontentsline{toc}{chapter}{Bibliographie}
-\bibitem{ref1} Référence 1
-\bibitem{ref2} Référence 2
+\bibliographystyle{plain}
+\bibliography{entrepreneur_aag-2016-en}
+\begin{thebibliography}{99}
+
+\bibitem{Beck2008}
+Beck, T., Demirgüç-Kunt, A., \& Maksimovic, V. (2008). Financing patterns around the world: The role of institutions. \textit{Journal of Financial Economics}, 89(2), 467-487. doi:10.1016/j.jfineco.2007.04.003
+
+\bibitem{Catalyst2011}
+Catalyst. (2011). The Bottom Line: Corporate Performance and Women's Representation on Boards. Catalyst. \url{https://www.catalyst.org/research/the-bottom-line-corporate-performance-and-womens-representation-on-boards/}
+
+\bibitem{Cefis2005}
+Cefis, E., \& Marsili, O. (2005). A matter of life and death: A study on the determinants of the exit from the market. \textit{Journal of Economic Behavior \& Organization}, 58(1-2), 17-32. doi:10.1016/j.jebo.2004.03.001
+
+\bibitem{Cole2016}
+Cole, R. A., \& Sokolyk, T. (2016). Financial access and the dynamics of business survival: Evidence from the Small Business Administration. \textit{Journal of Financial Stability}, 27, 209-219. doi:10.1016/j.jfs.2016.07.002
+
+\bibitem{Djankov2002}
+Djankov, S., McLiesh, C., \& Ramalho, R. (2002). Regulation of entry: The resource of law and entrepreneurship. \textit{The World Bank Policy Research Working Paper}, 2968. doi:10.1596/1813-9450-2968
+
+\bibitem{Eddleston2008}
+Eddleston, K. A., \& Powell, G. N. (2008). The role of gender in the decision to become an entrepreneur: A study of the influence of gender on the entrepreneurial process. \textit{Entrepreneurship Theory and Practice}, 32(2), 399-418. doi:10.1111/j.1540-6520.2008.00244.x
+
+\bibitem{Hurst2011}
+Hurst, E., \& Pugsley, B. W. (2011). What do small businesses do? \textit{Brookings Papers on Economic Activity}, 2011(2), 73-118. doi:10.1353/eca.2011.0004
+
+\bibitem{Lopez2013}
+López, M. A., \& de la Torre, R. (2013). The role of entrepreneurship in economic development. \textit{Journal of Economic Perspectives}, 27(3), 57-78. doi:10.1257/jep.27.3.57
+
+\bibitem{McKinsey2020}
+McKinsey \& Company. (2020). Women in the Workplace 2020. \url{https://www.mckinsey.com/featured-insights/gender-equality/women-in-the-workplace-2020}
+
+\bibitem{OECD2019}
+OECD. (2019). Taxation and Growth. \textit{OECD Publishing}. \url{https://www.oecd.org/tax/taxation-and-growth-9789264311739-en.htm}
+
+\bibitem{VanDerSluis2005}
+Van der Sluis, J., Van Praag, C. M., \& Vijverberg, W. (2005). Education and entrepreneurship in the Netherlands. \textit{The Review of Economics and Statistics}, 87(2), 250-262. doi:10.1162/0034653053970343
+
 \end{thebibliography}
+
 
 % Annexes
 \appendix
-\chapter*{Annexe A}
-\begin{figure}[H]
-    \centering
-\includegraphics[width=10cm,height=10cm]{../../../Recherches_stages_final/Rapport_de_fin d'etude/Rapport-traitement-et-analyse_files/figure-docx/test_schoenfeld.png} 
- \caption{Test de schoenfeld}
-    \label{fig:test_schoenfeld}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-\includegraphics[width=10cm,height=10cm]{../../../Recherches_stages_final/Rapport_de_fin d'etude/Rapport-traitement-et-analyse_files/figure-docx/sortie_coefficient.png} 
- \caption{sortie coefficients du modele}
-    \label{fig:sortie_coefficient}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-\includegraphics[width=10cm,height=5cm]{../../../Recherches_stages_final/Rapport_de_fin d'etude/Rapport-traitement-et-analyse_files/figure-docx/coefficient_modele_final.png} 
- \caption{sortie coefficients du modele final}
-    \label{fig:sortie_coefficient_modele}
-\end{figure}
+\chapter{Annexe A}
 \end{document}
