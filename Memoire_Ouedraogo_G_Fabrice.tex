@@ -71,13 +71,6 @@
 \rule{\linewidth}{0.3mm} \\[1cm]
 {\large \bfseries Direction Générale des Impots:Direction des enquetes et de la Recherche Fiscales }\\[1cm]
 
-\begin{minipage}{2.5cm}
-	\begin{center}
-		\includegraphics[width=2.3cm,height=2.5cm]{images/dgi.jpg}
-	\end{center}
-
-\end{minipage}
-
 % \includegraphics[width=0.3\textwidth]{logo-isae-supaero}\\[1cm]
 % Author and supervisor
 \noindent
@@ -140,7 +133,7 @@ Au fil du temps, diverses approches méthodologiques ont été proposées pour e
 \addcontentsline{toc}{chapter}{Abstract}
 Businesses are central to the Burkinabe economy, playing a significant role in reducing unemployment and generating wealth. Public authorities encourage their creation, viewing these entities as engines of growth and development. However, this dynamic is only beneficial if it leads to the establishment of viable and sustainable enterprises.
 
-The deactivation of businesses, often a sign of failure, not only hinders efforts to stimulate the economy but also diminishes the potential impact these businesses could have on national development. Therefore, it is essential to analyze the factors that influence their survival to better understand the mechanisms underlying their success or decline.
+The deactivation of businesses, often a sign of failure, not only hinders efforts to stimulate the economy but also diminishes the potential impact these businesses could have on national development. Therefore, it is essential to analyse the factors that influence their survival to better understand the mechanisms underlying their success or decline.
 
 This thesis provides an in-depth study of business survival in Burkina Faso using a Cox proportional hazards model, a widely used statistical tool for analysing the time until the occurrence of an event. Additionally, a dedicated application has been developed to offer policy-makers a predictive tool capable of estimating, based on business characteristics, the probable deactivation date. This tool aims to enhance strategies for supporting business viability.
 
@@ -162,11 +155,11 @@ C'est donc avec une profonde gratitude que je remercie l'ISSP pour l'enseignemen
 
 Je souhaite exprimer ma sincère gratitude à toutes les personnes qui ont contribué à la réussite de mon stage au sein de la Direction Générale des Impôts, et plus particulièrement à la Direction des Enquêtes et de la Recherche Fiscale (DERF).
 
-Je tiens à remercier tout particulièrement Monsieur Kabore, mon maître de stage, pour son encadrement exemplaire, sa patience et ses conseils avisés tout au long de cette expérience. Sa capacité à partager ses connaissances et son expertise m'ont permis de développer une compréhension approfondie des enjeux liés à la fiscalité et à la modélisation des données.
+Je tiens à remercier tout particulièrement Monsieur Kabore chef de service de la DERF pour m'avoir accueilli dans son équipe et pour avoir facilité mon intégration au sein de cette institution.
+Je le remercie pour son encadrement exemplaire, sa patience et ses conseils avisés tout au long de cette expérience. Sa capacité à partager ses connaissances et son expertise m'ont permis de développer une compréhension approfondie des enjeux liés à la fiscalité et à la modélisation des données.
 
 Je souhaite également exprimer ma reconnaissance envers Monsieur Birba et Monsieur Zerbo pour leur soutien indéfectible, leurs encouragements et leurs échanges enrichissants. Leur disponibilité et leur volonté de partager leur expérience ont été des atouts précieux dans l'accomplissement de mon projet.
-
-Un grand merci au chef de service de la DERF pour m'avoir accueilli dans son équipe et pour avoir facilité mon intégration au sein de cette institution. 
+ 
 
 Je n'oublie pas de remercier l'ensemble du personnel de la DGI pour leur accueil chaleureux, leur bienveillance et leur collaboration, qui ont grandement contribué à rendre cette expérience non seulement enrichissante sur le plan professionnel, mais également humaine.
 
@@ -174,6 +167,18 @@ Enfin, je suis reconnaissant envers tous ceux qui ont participé, de près ou de
 
 \chapter*{Sigles et abbréviations}
 \addcontentsline{toc}{chapter}{Sigles et abbréviation}
+\begin{itemize}
+\item \textbf{CME :}Contribution des Micro-entreprises
+\item \textbf{CMD :} 
+\item \textbf{DERF :} Direction des Enquetes et de la Recherche Fiscale
+\item \textbf{DGI :} Direction Générale des Impôts
+\item \textbf{INSD :} Institut National de la Statistique et de la Démographie
+\item \textbf{MEFP :} Ministère de l'Économie, des Finances et de la Planification
+\item \textbf{RBV :} Réseau des Bibliothèques Virtuelles
+\item \textbf{SA :} Société Anonyme
+\item \textbf{SARL :} Société à Responsabilité Limitée
+\item \textbf{VRIN :} Valeur, Rareté, Inimitabilité, Non-substituabilité
+\end{itemize}
 
 % Remerciements
 \chapter*{Liste des figures et tableaux}
@@ -227,7 +232,7 @@ La désactivation des entreprises représente un défi majeur pour le développe
 
 Ces chiffres soulèvent des interrogations sur les causes de la mortalité des entreprises et mettent en lumière la nécessité de développer des outils adaptés pour anticiper et mitiger ces risques. Les analyses montrent que les secteurs d'activité jouent également un rôle crucial : par exemple, les entreprises opérant dans les secteurs de la construction et des services enregistrent des taux de mortalité atteignant 25 \%, contre seulement 10 \% pour celles dans le secteur technologique.
 
-Dans ce contexte, la mise en place d'un modèle de prévision de la désactivation des entreprises apparaît comme une solution pertinente. Un tel modèle permettrait d'analyser des données historiques en tenant compte de divers facteurs explicatifs, tels que l'âge de l'entreprise, le secteur d'activité, le nombre de déclarations fiscales, l'accès au financement et les compétences en gestion.
+Dans ce contexte, la mise en place d'un modèle de prévision de la désactivation des entreprises apparaît comme une solution pertinente. Un tel modèle permettrait d'analyser des données historiques en tenant compte de divers facteurs explicatifs, tels que l'âge de l'entreprise, le sexe,le regime de l'entreprise.
 
 L'objectif de ce mémoire est donc de concevoir un modèle de prévision robuste qui permettra d'identifier les entreprises à risque de désactivation, d'analyser les déterminants de cette mortalité et de proposer des recommandations concrètes pour améliorer la survie des entreprises au Burkina Faso. En se basant sur une approche multidisciplinaire, cette recherche aspire à contribuer à l'élaboration de politiques publiques favorisant un environnement entrepreneurial durable et dynamique, essentiel pour le développement socio-économique du pays.
 \section{Contexte et justification}
@@ -392,8 +397,8 @@ Ce rapport montre que le taux de décès des entreprises employant des salariés
 \addcontentsline{toc}{chapter}{Méthodologie}
 \setcounter{section}{0}  % Reset section counter
 \renewcommand\thesection{\Roman{section}} 
-En rappelle,notre etude consiste a predire la date probable de la desactivation des entreprises en fonction des caracteristiques propres a l'entreprise et au personnel.Dans l'optique de repondre a cet objectif ,nous avons fait usage du modele de cox tres apprecie pour traiter les cas d'analyse de survie avec des caracteristiques.
-Dans cette partie ,nous allons presenter le modele de cox et les donnees qui ont servie a l'implementation du modele.
+En rappel, notre étude consiste à prédire la date probable de la désactivation des entreprises en fonction des caractéristiques propres à l’entreprise et au personnel. Dans l’optique de répondre à cet objectif, nous avons fait usage du modèle de Cox, très apprécié pour traiter les cas d’analyse de survie avec des caractéristiques.
+Dans cette partie, nous allons présenter le modèle de Cox et les données qui ont servi à l’implémentation du modèle.
 \section{Specification du modele de cox}
 \subsection{Présentation du modèle choisi : Modèle de Cox}
 Le modèle de Cox, également connu sous le nom de modèle de risques proportionnels de Cox, est une méthode statistique largement utilisée pour l'analyse de survie. Ce modèle permet d'examiner le temps jusqu'à un événement d'intérêt, tel que la désactivation d'une entreprise, tout en tenant compte des effets de plusieurs variables explicatives. Contrairement à d'autres modèles, le modèle de Cox ne nécessite pas que les données soient distribuées selon une loi particulière, ce qui en fait un choix flexible et puissant pour l'analyse de survie.
@@ -454,7 +459,6 @@ L'interprétation des coefficients du modèle de Cox est cruciale pour comprendr
 
     \item \textbf{Implications pratiques} : L'interprétation des coefficients a des implications pratiques pour les gestionnaires d'entreprise et les décideurs. Par exemple, si l'âge et le nombre de redressements sont des facteurs de risque importants, les entreprises peuvent envisager des stratégies pour atténuer ces risques, comme l'amélioration de la gestion financière ou l'optimisation des opérations pour éviter les redressements.
 \end{itemize}
-\section{Justification des variables du modele de cox}
 
 \section{Sources de Données}
 
@@ -488,18 +492,78 @@ Pour cette étude, plusieurs variables clés ont été extraites du datawarehous
     \item \textbf{Importance} : Le régime fiscal a un impact direct sur les obligations fiscales de l'entreprise, sa charge financière et sa capacité à se conformer aux réglementations. Comprendre le lien entre le régime fiscal et la désactivation des entreprises peut éclairer les politiques fiscales et réglementaires à mettre en œuvre pour soutenir la pérennité des entreprises.
 \end{itemize}
 
+\subsection{Conception et Développement de l'Application}
+
+La prédiction de la survie des entreprises revêt une importance capitale dans le cadre des analyses financières et des politiques économiques. Pour répondre à ce besoin, une application de prévision de survie a été développée. Elle permet aux utilisateurs de visualiser les probabilités de survie et d'obtenir des prédictions sur la durée de vie potentielle des entreprises en fonction de divers attributs. Cette application a été implémentée en utilisant le package \textbf{Shiny} de R, qui est une solution puissante pour développer des applications web interactives, offrant ainsi une interface accessible et intuitive même pour des utilisateurs non techniques.
+
+\subsubsection{Choix des Technologies et Infrastructure}
+
+L'application a été construite en R pour tirer parti de la richesse de ses packages statistiques, particulièrement adaptés pour les analyses de survie. \textbf{Shiny} a été choisi pour ses capacités à transformer des scripts R en interfaces web interactives, facilitant ainsi l'accès aux résultats de prédiction. Le package \textbf{survival} a été utilisé pour calculer les probabilités de survie, et \textbf{ggplot2} a été intégré pour produire des graphiques dynamiques et esthétiques. Ces choix technologiques permettent d'assurer une haute performance, une visualisation élégante des données, et une facilité d'utilisation.
+
+\subsubsection{Interface Utilisateur}
+
+L'interface de l'application a été conçue pour être intuitive, ergonomique, et adaptée aux différents niveaux d'expertise des utilisateurs. Elle permet aux utilisateurs de définir les caractéristiques de l'entreprise afin de générer des prédictions personnalisées. Les principaux champs de saisie sont organisés sous forme de listes déroulantes et de boîtes de sélection, avec les options suivantes :
+
+\begin{itemize}
+    \item \textbf{Régime Fiscal} : L'utilisateur peut choisir parmi plusieurs régimes fiscaux applicables aux entreprises, tels que "CME" (contribuables moyens), "GE" (grandes entreprises), etc. Ce champ permet de spécifier le cadre fiscal dans lequel évolue l'entreprise, influençant potentiellement sa survie.
+    \item \textbf{Forme Juridique} : Ce champ donne accès aux différentes structures juridiques possibles, telles que "Structures Individuelles", "SARL", ou "SA". Cette variable est cruciale, car elle reflète les obligations légales et les protections des propriétaires d'entreprise, ce qui peut affecter la stabilité de l’entreprise.
+    \item \textbf{Sexe du Dirigeant} : Permet de sélectionner le sexe du dirigeant (Homme ou Femme). Ce paramètre est exploré dans l'analyse pour évaluer l'impact éventuel de cette variable sur la survie de l'entreprise.
+    \item \textbf{Âge de l'Entreprise} : L'utilisateur peut entrer l'âge de l'entreprise, soit en années précises, soit par intervalles prédéfinis, tels que [50, 52]. L'âge est un indicateur clé de la maturité de l’entreprise et de son adaptation au marché.
+\end{itemize}
+
+Après avoir défini les options souhaitées, l'utilisateur peut cliquer sur le bouton \textbf{Soumettre les Données}, déclenchant ainsi le calcul des prédictions de survie basé sur le modèle sous-jacent.
+
+\subsubsection{Résultats et Visualisation}
+
+Une fois les données soumises, l'application génère deux types de résultats pour permettre une compréhension approfondie de la survie de l’entreprise :
+
+\begin{enumerate}
+    \item \textbf{Temps de Survie Prédit} : L'application affiche l'estimation du temps de survie prédit sous forme de texte. Par exemple, si le temps de survie est estimé à \textbf{1,2 années}, cela indique la durée attendue de la survie de l'entreprise, en fonction des caractéristiques choisies. Cette information est particulièrement utile pour les gestionnaires et les investisseurs cherchant à évaluer les risques.
+    \item \textbf{Courbe de Survie} : Une courbe de survie dynamique est générée dans un graphique interactif, permettant aux utilisateurs de visualiser l'évolution de la probabilité de survie en fonction du temps. Cette courbe est enrichie d'une ligne en pointillés rouge représentant le temps de survie prédit. L'interface permet également d'interagir avec la courbe, offrant des informations détaillées sur la probabilité de survie pour différents intervalles de temps.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Capture d’écran_9-11-2024_104415_127.0.0.1.jpeg}
+    \caption{Capture de l'application de prévision de survie}
+\end{figure}
+
+\subsubsection{Algorithmes et Modèle de Prédiction Utilisés}
+
+Le cœur de l'application repose sur un modèle de survie basé sur [nom du modèle, ex. modèle de Cox, Random Survival Forest], un algorithme robuste pour modéliser le temps de survie et estimer la probabilité de défaillance d'une entreprise. Ce modèle utilise les variables caractéristiques de l’entreprise, comme la forme juridique et le régime fiscal, pour calculer des probabilités de survie. Le modèle de Cox a été sélectionné pour sa capacité à gérer les variables explicatives de façon semi-paramétrique, ce qui permet de capturer des relations complexes entre les attributs de l’entreprise et sa probabilité de survie.
+
+L'algorithme de prédiction est configuré pour générer des intervalles de confiance, donnant aux utilisateurs une évaluation non seulement du temps de survie, mais également de la variabilité et de l'incertitude associées à cette prédiction. Les résultats sont ensuite intégrés à l'interface pour une interprétation simplifiée.
+
+\subsubsection{Fonctionnalité et Accessibilité}
+
+L'application a été conçue pour être facilement utilisable et accessible, même par des personnes non familières avec l'analyse statistique ou la programmation. Elle permet aux utilisateurs d'explorer différents scénarios en fonction des caractéristiques des entreprises et d'observer les variations dans les résultats de survie. Cette capacité de simulation facilite l’évaluation des risques et la prise de décision, en permettant de visualiser l'impact de différents facteurs sur la durée de vie de l'entreprise.
+
+De plus, l'application est légère et peut être hébergée sur des serveurs accessibles via un navigateur web, sans nécessiter l’installation de logiciels spécifiques. Cela la rend facilement accessible aux décideurs et analystes qui peuvent y accéder de n'importe où.
+
+\subsubsection{Avantages et Limites de l'Application}
+
+\begin{itemize}
+    \item \textbf{Avantages} : L'application offre une interface utilisateur simple et interactive, facilitant l'accès aux analyses de survie. Les utilisateurs peuvent facilement explorer différents scénarios et visualiser leurs impacts sur la probabilité de survie des entreprises. Le modèle de survie sous-jacent est solide et prend en compte de multiples facteurs pour offrir des prédictions précises.
+    \item \textbf{Limites} : L'application dépend de la qualité et de l'exhaustivité des données disponibles. De plus, certains biais peuvent être présents si certaines caractéristiques des entreprises influençant leur survie ne sont pas intégrées dans le modèle. Des améliorations futures pourraient inclure l'ajout de nouvelles variables explicatives et l'utilisation d'algorithmes plus avancés pour affiner les prédictions.
+\end{itemize}
+
+\subsubsection{Perspectives d'Amélioration}
+
+Les perspectives d’amélioration de l’application incluent l’intégration de nouvelles sources de données, telles que des indicateurs économiques ou des informations sectorielles actualisées. De plus, il serait possible d’envisager l’implémentation de modèles de Machine Learning plus avancés, comme les réseaux de neurones profonds, pour améliorer les performances prédictives de l’outil. Enfin, des fonctionnalités supplémentaires pourraient être ajoutées pour permettre aux utilisateurs de télécharger des rapports personnalisés ou d’exporter les données pour une analyse plus approfondie.
+
+En somme, cette application offre une solution pratique et performante pour l’analyse de survie des entreprises, tout en permettant une grande flexibilité d’utilisation pour les gestionnaires et les décideurs.
+
+
 % Résultats
 \newpage
 \chapter{Résultats}
 \addcontentsline{toc}{chapter}{Résultats}
 \subsection{Analyse descriptive}
 
-\subsection{Analyse descriptive}
 
 % Inclusion du tableau des caractéristiques
 \input{../../Desktop/tableaux/caracteristiques}
 
-% Commentaire directement sous le tableau
 \noindent
 Le tableau présente une analyse descriptive des caractéristiques de 145 097 entités. Concernant le régime fiscal, la majorité (81 \%) des entités est soumise au régime CME, contre seulement 19 \% pour le CMD, ce qui suggère une préférence pour les conditions offertes par le CME, potentiellement plus adaptées aux besoins des entreprises. En termes de forme juridique, les structures individuelles sont très majoritaires (84 \%), comparativement aux sociétés (16 \%). Cela pourrait traduire une dynamique entrepreneuriale favorisant des modèles plus souples et moins formels, souvent choisis par les entrepreneurs indépendants ou pour des activités de plus petite envergure.
 
@@ -507,7 +571,7 @@ La répartition par sexe montre une prédominance féminine, avec 67 \% de femme
 
 % Insertion de la nouvelle page pour la table de Cox
 \newpage
-
+\subsection{Estimation des Hazard ration}
 % Inclusion du tableau des résultats de Cox
 \input{../../Desktop/tableaux/cox_table}
 
